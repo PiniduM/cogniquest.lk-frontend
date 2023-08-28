@@ -1,0 +1,62 @@
+/* v-abc : v stands for vanila*/
+
+/* Navigation Bar */
+.v-nav_link {
+  position: relative;
+}
+.v-nav_link::after {
+  content: "";
+  position: absolute;
+  background-color: rgb(6, 106, 224, 0.6);
+  width: 0px;
+  height: 3px;
+  left: 0;
+  bottom: 0;
+  transition: 0.3s;
+}
+
+.v-nav_link:hover::after {
+  width: 100%;
+}
+
+/* ProfileMenu */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* nav menu */
+
+.v-frame_blur {
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0) 30%,
+    rgb(255, 255, 255)
+  );
+}
+
+.v-nav_menu_frame {
+  position: relative;
+}
+.v-nav_menu_frame::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(0.25turn,white,rgba(255, 255, 255, 0),white);
+}

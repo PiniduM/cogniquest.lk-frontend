@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --blue: rgb(3, 121, 255);
+  --lightBlue: rgba(3, 121, 255, 0.46);
+}
+
+a {
+  display: contents;
+}

@@ -1,8 +1,9 @@
-import Header from "./globals/components/Header/Header";
-import type { Metadata } from "next";
+import "@/src/styles/globals.css";
+import "@/src/styles/vanila.css";
 
-import "./globals/styles/globals.css";
-import "./globals/styles/vanila.css"
+import type { Metadata } from "next";
+import Header from "@/src/components/global/Header/Header";
+import NavigationMenu from "@/src/components/global/NavigationMenu/NavigationMenu";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,11 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <main className="">
+      <body className="relative">
         <Header />
-        {children}
-        </main>
+        <main >{children}</main> {/*should be scaled up to fit with screens over w-1500px */}
       </body>
     </html>
   );
