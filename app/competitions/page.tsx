@@ -4,9 +4,12 @@ import { AuthContext } from "@/src/contexts/AuthContext";
 import CompetitionListLayout from "@/src/layouts/CompetitionListLayout";
 import { TPubliclyAvailbleCompetitions } from "@/src/types/resBodies";
 import axios, { AxiosError } from "axios";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState, useContext } from "react";
 
 const page = () => {
+
+    const router = useRouter();
   const { loginToken } = useContext(AuthContext);
   const [publiclyAvailabeCompetions, setPubliclyAvailabeCompetitions] =
     useState<TPubliclyAvailbleCompetitions>([]);
@@ -27,8 +30,8 @@ const page = () => {
     setupPubliclyAvailabeCompetitions();
   }, []);
 
-  const handleClick = async () => {
-
+  const handleClick = async (competition_id: string) => {
+    router.push(`/dashboard/candidate/apply_for_competition?competition_id=${competition_id}`)
   }
 
   return (
@@ -39,7 +42,7 @@ const page = () => {
           <CompetitionLink 
           competitionData={competition}
           callToAction="Details"
-        onClick={handleClick}/>
+        onClick={() => handleClick(competition.competition_id)}/>
         ))}
       </CompetitionListLayout>
     </section>
