@@ -4,6 +4,7 @@ import "@/src/styles/vanila.css";
 import type { Metadata } from "next";
 import Header from "@/src/components/global/Header/Header";
 import NavigationMenu from "@/src/components/global/NavigationMenu/NavigationMenu";
+import AuthContextProvider from "@/src/contexts/AuthContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,11 +17,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="relative">
-        <Header />
-        <main >{children}</main> {/*should be scaled up to fit with screens over w-1500px */}
-      </body>
-    </html>
+    <AuthContextProvider>
+      <html lang="en">
+        <body className="relative">
+          <Header />
+          <main>{children}</main>{" "}
+          {/*should be scaled up to fit with screens over w-1500px */}
+        </body>
+      </html>
+    </AuthContextProvider>
   );
 }

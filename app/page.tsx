@@ -1,8 +1,14 @@
+"use client";
+
 import heroVector from "@/public/images/hero_image.svg";
 import robotVector from "@/public/images/robot_image.svg";
+import { AuthContext } from "@/src/contexts/AuthContext";
 import Image from "next/image";
+import { useContext } from "react";
 
 const HomePage: React.FC = () => {
+  const { loginToken } = useContext(AuthContext);
+
   return (
     <>
       <section className=" flex justify-evenly items-center py-10 px-8 bg-[var(--lightBlue)] mb-10">

@@ -1,15 +1,27 @@
-interface Iprops {
+import Link from "next/link";
+import { ReactNode } from "react";
 
+interface INavlinkProps {
+  href: string;
+  children: ReactNode;
 }
-
-const NavigationBar:React.FC<Iprops> = () => {
+const Navlink: React.FC<INavlinkProps> = ({ href, children }) => {
   return (
-    <nav className='flex text-[var(--blue)] font-semibold text-lg gap-2'>
-        <span className='v-nav_link text-md'>Home</span>
-        <span className='v-nav_link'>Competitions</span>
-        <span className='v-nav_link'>About us</span>
-    </nav>
-  )
-}
+    <Link href={href}>
+      <p className="v-nav_link">{children}</p>
+    </Link>
+  );
+};
 
-export default NavigationBar
+interface Iprops {}
+const NavigationBar: React.FC<Iprops> = () => {
+  return (
+    <nav className="flex text-[var(--blue)] font-semibold text-lg gap-2">
+      <Navlink href="/">Home</Navlink>
+      <Navlink href="/competitions">Competitions</Navlink>
+      <Navlink href="/dashboard">Dashboard</Navlink>
+    </nav>
+  );
+};
+
+export default NavigationBar;

@@ -5,6 +5,9 @@
 :root {
   --blue: rgb(3, 121, 255);
   --lightBlue: rgba(3, 121, 255, 0.46);
+  --lightRed: rgb(247, 124, 124);
+  --subText: 	rgb(90, 90, 90);
+  --extraLightBg: rgba(0, 102, 255, 0.103);
 }
 
 a {
