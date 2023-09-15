@@ -95,7 +95,7 @@ const page = () => {
         try {
           await axios.post(url, data);
           alert("Admin Approval given and submitted for system approval");
-          router.push('/dashborad/host');
+          router.push('/dashboard/host');
         } catch (err) {
           const error = err as AxiosError;
           console.log(error);

@@ -36,3 +36,13 @@ export interface ICompetition {
 export type TGiveCompetitionResponseData = {
   competition: ICompetition;
 };
+
+export interface IPubliclyAvailbeCompetitionCompetition {
+  competition_id: string;
+  competition_title: string;
+  accessibility: string;
+  status: string;
+  organization_name: string;
+}
+
+export type TPubliclyAvailbleCompetitions = IPubliclyAvailbeCompetitionCompetition[];
