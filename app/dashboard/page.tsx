@@ -1,11 +1,8 @@
 "use client";
 
-import CandidateDashBoard from "@/src/components/CandidateDashBoard/CandidateDashBoard";
-import HostDashBoard from "@/src/components/HostDashboard/HostDashBoard";
 import { AuthContext } from "@/src/contexts/AuthContext";
-import { TUserData } from "@/src/types/application";
 import { useRouter } from "next/navigation";
-import React, { useContext, useEffect, useState } from "react";
+import { useEffect,useContext } from "react";
 
 const DashboaderPage = () => {
   const router = useRouter();

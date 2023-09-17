@@ -10,7 +10,7 @@ import React, { useState, useEffect, useContext } from "react";
 import CompetitionLink from "@/src/components/global/CompetitionLink/CompetitionLink";
 import SubmitButton from "@/src/components/global/Buttons/SubmitButton";
 import Link from "next/link";
-import { DashBoardContext } from "@/src/contexts/DashboardContext";
+import { DashBoardContext } from "@/src/contexts/HostDashboardContext";
 import { AuthContext } from "@/src/contexts/AuthContext";
 import CompetitionsWaitingForApproval from "@/src/components/Dashboard/host/CompetitionsWaitingForApproval/CompetitionsWaitingForApproval";
 import CompetitionListLayout from "@/src/layouts/CompetitionListLayout";
@@ -42,22 +42,22 @@ const HostDashBoard: React.FC = () => {
           </span>
         </h1>
       </div>
-      
+
       {organizationMembershipsToken && (
-        <div className="row-span-3">
-        <AssociatedCompetitions
-          organizationMembershipsToken={organizationMembershipsToken}
-          />
+        <>
+          <div className="row-span-3">
+            <AssociatedCompetitions
+              organizationMembershipsToken={organizationMembershipsToken}
+            />
           </div>
-      )}
-      {organizationMembershipsToken && (
-        <div className="mb-4">
-        <CompetitionsWaitingForApproval
-          organizationMembershipsToken={organizationMembershipsToken}
-          />
+          <div className="mb-4">
+            <CompetitionsWaitingForApproval
+              organizationMembershipsToken={organizationMembershipsToken}
+            />
           </div>
+          <NewCompetitionLink />
+        </>
       )}
-      <NewCompetitionLink />
     </section>
   );
 };

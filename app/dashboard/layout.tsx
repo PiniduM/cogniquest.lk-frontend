@@ -2,7 +2,7 @@
 
 import DashBoardTypeToggler from "@/src/components/Dashboard/DashboardToggler";
 import { AuthContext } from "@/src/contexts/AuthContext";
-import DashboardContextProvider from "@/src/contexts/DashboardContext";
+import HostDashboardContextProvider from "@/src/contexts/HostDashboardContext";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, {
@@ -27,7 +27,6 @@ const layout: React.FC<PropsWithChildren> = ({ children }) => {
   }, []);
 
   return (
-    <DashboardContextProvider>
       <>
         <section className="flex justify-between py-2 px-4 bg-[var(--lightBlue)]">
           <Link href='/dashboard'><h1 className="text-2xl font-semibold">Dashboard</h1></Link>
@@ -35,7 +34,6 @@ const layout: React.FC<PropsWithChildren> = ({ children }) => {
         </section>
         {children}
       </>
-    </DashboardContextProvider>
   );
 };
 

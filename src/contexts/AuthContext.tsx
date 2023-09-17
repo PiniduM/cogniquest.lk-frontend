@@ -1,5 +1,7 @@
 "use client";
 
+import React from "react";
+
 import { getCookie } from "cookies-next";
 import jwtDecode, { JwtPayload } from "jwt-decode";
 import {
@@ -14,21 +16,25 @@ import {
 import { TUserData } from "../types/application";
 
 interface IcontextValues {
-  setLoginToken: (token: string) => void;
+  setLoginToken: React.Dispatch<SetStateAction<string | undefined>>;
   loginToken?: string;
-  userData?: TUserData
+  userData?: TUserData;
 }
 
 export const AuthContext: Context<IcontextValues> = createContext({
-  setLoginToken: (token: string) => {},
+  setLoginToken: (() => {}) as React.Dispatch<
+    SetStateAction<string | undefined>
+  >,
 });
 
 const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const token = getCookie("login_token");
-  const userData = token ? jwtDecode(token) : undefined;
+  const userData = (token ? jwtDecode(token) : undefined) as
+    | TUserData
+    | undefined;
   const [loginToken, setLoginToken] = useState(userData ? token : undefined);
   //To prevent setting a malformed token as the login token
-  const contextValue = { loginToken, setLoginToken, userData } as IcontextValues;
+  const contextValue = { loginToken, setLoginToken, userData };
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );

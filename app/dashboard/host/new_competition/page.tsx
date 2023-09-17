@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useContext, useRef } from "react";
 import TextInput from "@/src/components/global/Inputs/CustomInput";
-import { DashBoardContext } from "@/src/contexts/DashboardContext";
+import { DashBoardContext } from "@/src/contexts/HostDashboardContext";
 import axios from "axios";
 import SelectionInput from "@/src/components/global/Inputs/SelectionInput";
 import { TAssociatedOrganizations } from "@/src/types/application";

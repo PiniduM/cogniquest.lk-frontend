@@ -2,7 +2,7 @@
 
 import SubmitButton from "@/src/components/global/Buttons/SubmitButton";
 import delayedReload from '@/src/utils/global/delayedReload'
-import { DashBoardContext } from "@/src/contexts/DashboardContext";
+import { DashBoardContext } from "@/src/contexts/HostDashboardContext";
 import {
   ICompetition,
   TGiveCompetitionResponseData,
