@@ -25,7 +25,7 @@ interface IContextValue {
   // organizationMemberships: TParsedMembershipsArray;
 }
 
-export const DashBoardContext = createContext<IContextValue>({
+export const HostDashBoardContext = createContext<IContextValue>({
   setOrganizationMembershipsToken: (() => {}) as React.Dispatch<
     SetStateAction<string>
   >,
@@ -89,9 +89,9 @@ const HostDashboardContextProvider: React.FC<PropsWithChildren> = ({
   };
 
   return (
-    <DashBoardContext.Provider value={contextValue}>
+    <HostDashBoardContext.Provider value={contextValue}>
       {children}
-    </DashBoardContext.Provider>
+    </HostDashBoardContext.Provider>
   );
 };
 

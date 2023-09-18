@@ -2,7 +2,7 @@
 
 import SubmitButton from "@/src/components/global/Buttons/SubmitButton";
 import delayedReload from '@/src/utils/global/delayedReload'
-import { DashBoardContext } from "@/src/contexts/HostDashboardContext";
+import { HostDashBoardContext } from "@/src/contexts/HostDashboardContext";
 import {
   ICompetition,
   TGiveCompetitionResponseData,
@@ -27,7 +27,7 @@ const Detail: React.FC<PropsWithChildren> = ({ children }) => {
 
 const page = () => {
   const { organizationMembershipsToken, organizationMemberships } =
-    useContext(DashBoardContext);
+    useContext(HostDashBoardContext);
   const router = useRouter();
   const searchParams = useSearchParams();
   const competition_id = searchParams.get("competition_id");

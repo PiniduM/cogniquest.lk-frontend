@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useContext, useRef } from "react";
 import TextInput from "@/src/components/global/Inputs/CustomInput";
-import { DashBoardContext } from "@/src/contexts/HostDashboardContext";
+import { HostDashBoardContext } from "@/src/contexts/HostDashboardContext";
 import axios from "axios";
 import SelectionInput from "@/src/components/global/Inputs/SelectionInput";
 import { TAssociatedOrganizations } from "@/src/types/application";
@@ -10,6 +10,7 @@ import { validAccessibilities } from "@/src/validators/competitions";
 import AccessibilitySelector from "@/src/components/Dashboard/host/new_competition/AccessibilitySelector";
 import SubmitButton from "@/src/components/global/Buttons/SubmitButton";
 import { useRouter } from "next/navigation";
+import jwtDecode from "jwt-decode";
 
 interface IAccessibility {
   type: string;
@@ -17,33 +18,33 @@ interface IAccessibility {
 }
 
 const NewCompetition = () => {
-
-
   const router = useRouter();
 
-  const { organizationMembershipsToken, organizationMemberships } =
-    useContext(DashBoardContext);
+  const { organizationMembershipsToken } = useContext(HostDashBoardContext);
 
   const [associatedOrganizations, setAssociatedOrganizations] =
     useState<TAssociatedOrganizations>([]);
   useEffect(() => {
-    if (!organizationMemberships) return;
-    const associatedOrganizationIds = organizationMemberships?.map(
-      (membership) => membership.organization_id
-    );
-    const url = `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/organization_member/give_associated_organizations`;
-    const data = { associatedOrganizationIds, organizationMembershipsToken };
+    if (organizationMembershipsToken) {
+      const setupAssociatedOrganizations = () => {
 
-    axios
-      .post(url, data)
-      .then((response) => {
-        const data = response.data;
-        setAssociatedOrganizations(data.associatedOrganizations);
-      })
-      .catch(() => {
-        alert("Something went wrong");
-      });
-  }, [organizationMemberships]);
+        const url = `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/organization_member/give_associated_organizations`;
+        const data = { organizationMembershipsToken };
+        
+        axios
+        .post(url, data)
+        .then((response) => {
+          const data = response.data;
+          setAssociatedOrganizations(data.associatedOrganizations);
+        })
+        .catch(() => {
+          alert("Something went wrong");
+        });
+      }
+
+      setupAssociatedOrganizations();
+    }
+  }, [organizationMembershipsToken]);
 
   const organizationOptions = associatedOrganizations.map((organization) => ({
     value: organization.organization_id,
@@ -77,11 +78,11 @@ const NewCompetition = () => {
     );
     try {
       const response = await axios.post(url, formData);
-      if(response.data = 'competition_submitted') {
-        alert('successfully submitted');
+      if ((response.data = "competition_submitted")) {
+        alert("successfully submitted");
         setInterval(() => {
-          router.push('/dashboard/host')
-        },1000)
+          router.push("/dashboard/host");
+        }, 1000);
       }
     } catch (error) {
       console.log(error);

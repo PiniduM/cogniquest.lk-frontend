@@ -10,7 +10,7 @@ import React, { useState, useEffect, useContext } from "react";
 import CompetitionLink from "@/src/components/global/CompetitionLink/CompetitionLink";
 import SubmitButton from "@/src/components/global/Buttons/SubmitButton";
 import Link from "next/link";
-import { DashBoardContext } from "@/src/contexts/HostDashboardContext";
+import { HostDashBoardContext } from "@/src/contexts/HostDashboardContext";
 import { AuthContext } from "@/src/contexts/AuthContext";
 import CompetitionsWaitingForApproval from "@/src/components/Dashboard/host/CompetitionsWaitingForApproval/CompetitionsWaitingForApproval";
 import CompetitionListLayout from "@/src/layouts/CompetitionListLayout";
@@ -20,7 +20,7 @@ import NewCompetitionLink from "@/src/components/Dashboard/host/NewCompetitionLi
 const HostDashBoard: React.FC = () => {
   const { userData: currentUserData } = useContext(AuthContext);
   const { organizationMembershipsToken: membershipsToken } =
-    useContext(DashBoardContext);
+    useContext(HostDashBoardContext);
 
   const [organizationMembershipsToken, setOrganizationMembershipsToken] =
     useState("");
@@ -55,7 +55,9 @@ const HostDashBoard: React.FC = () => {
               organizationMembershipsToken={organizationMembershipsToken}
             />
           </div>
-          <NewCompetitionLink />
+          <div className="col-start-1 max-w-xl">
+            <NewCompetitionLink />
+          </div>
         </>
       )}
     </section>

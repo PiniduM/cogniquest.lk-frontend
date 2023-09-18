@@ -25,3 +25,17 @@ export type TAssociatedOrganizations = {
   organization_id: string; // number but treated as a string
   organization_name: string;
 }[]
+
+export interface IOrganizationData {
+  organization_id: string;
+  organization_name: string;
+  reference_code: string;
+}
+
+export interface IMembershipWaitingForApproval {
+  member_id: string;
+  username: string;
+  full_name: string;
+  email: string;
+  role: string;
+}
