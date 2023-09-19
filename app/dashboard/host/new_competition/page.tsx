@@ -9,7 +9,7 @@ import { TAssociatedOrganizations } from "@/src/types/application";
 import { validAccessibilities } from "@/src/validators/competitions";
 import AccessibilitySelector from "@/src/components/Dashboard/host/new_competition/AccessibilitySelector";
 import SubmitButton from "@/src/components/global/Buttons/SubmitButton";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import jwtDecode from "jwt-decode";
 
 interface IAccessibility {

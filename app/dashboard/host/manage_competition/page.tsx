@@ -16,6 +16,8 @@ import React, {
   useEffect,
   useState,
 } from "react";
+import jwtDecode from "jwt-decode";
+import { IOrganizationMembershipsPayload, TOrganizationMembershipsArray } from "@/src/types/application";
 
 const Detail: React.FC<PropsWithChildren> = ({ children }) => {
   return (
@@ -26,7 +28,7 @@ const Detail: React.FC<PropsWithChildren> = ({ children }) => {
 };
 
 const page = () => {
-  const { organizationMembershipsToken, organizationMemberships } =
+  const { organizationMembershipsToken} =
     useContext(HostDashBoardContext);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -34,6 +36,9 @@ const page = () => {
 
   const [competition, setCompetition] = useState<ICompetition>();
 
+
+  const parsedrganizationMembershipsToken = (organizationMembershipsToken && jwtDecode(organizationMembershipsToken)) as IOrganizationMembershipsPayload | undefined;
+  const organizationMemberships = parsedrganizationMembershipsToken && JSON.parse(parsedrganizationMembershipsToken.memberships) as TOrganizationMembershipsArray
   useEffect(() => {
     if (!competition_id) {
       router.push("/dashboard/host");
@@ -90,7 +95,7 @@ const page = () => {
   const handleApproval:MouseEventHandler<HTMLButtonElement> = isAdmin
     ? async (e) => {
         const url = `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/organization_member/admin/approve_competition`;
-        const data = { competition_id, organizationMembershipsToken };
+        const data = { competitionId: competition_id,organizationId:organization_id, organizationMembershipsToken };
 
         try {
           await axios.post(url, data);

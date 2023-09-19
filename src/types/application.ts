@@ -13,7 +13,7 @@ export interface IOrganizationMembershipsPayload {
   [key: string]: string;
 }
 
-export type TParsedMembershipsArray =  {
+export type TOrganizationMembershipsArray =  {
   member_id: string;
   role: string;
   organization_id: string;
@@ -38,4 +38,12 @@ export interface IMembershipWaitingForApproval {
   full_name: string;
   email: string;
   role: string;
+}
+
+export interface ICompetitionWaitingForApproval {
+  competition_id: string;
+  competition_title: string;
+  accessibility: string;
+  status: string;
+  organization_name: string;
 }

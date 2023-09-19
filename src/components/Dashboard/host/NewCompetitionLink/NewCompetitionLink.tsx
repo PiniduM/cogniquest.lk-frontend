@@ -2,9 +2,9 @@ import SubmitButton from "@/src/components/global/Buttons/SubmitButton";
 import Link from "next/link";
 import React from "react";
 
-const NewCompetitionLink = () => {
+const NewCompetitionPageLink = () => {
   return (
-    <div className="justify-self-center flex flex-col justify-center bg-white rounded-md h-fit pt-1 pb-4 px-2">
+    <div className="flex flex-col justify-center bg-white rounded-md max-w-[30rem] pt-1 pb-4 px-2">
       <h2 className="text-2xl font-semibold mb-4">Start a competition</h2>
       <p className="mb-4">
         You should be a admin or a excecutive to start a new competition
@@ -16,4 +16,4 @@ const NewCompetitionLink = () => {
   );
 };
 
-export default NewCompetitionLink;
+export default NewCompetitionPageLink;

@@ -8,15 +8,6 @@ export interface IAssociatedCompetition {
 
 export type TAssociatedCompetitions = IAssociatedCompetition[];
 
-export interface ICompetitionWaitingForApproval {
-  competition_id: string;
-  competition_title: string;
-  accessibility: string;
-  status: string;
-  organization_name: string;
-}
-export type TCompetitionsWaitingForApprovalREsponseData =
-  ICompetitionWaitingForApproval[];
 
 export interface ICompetition {
   accessibility: string;

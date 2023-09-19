@@ -14,7 +14,7 @@ import { AuthContext } from "./AuthContext";
 import { getCookie, setCookie } from "cookies-next";
 import {
   IOrganizationMembershipsPayload,
-  TParsedMembershipsArray,
+  TOrganizationMembershipsArray,
 } from "../types/application";
 import jwtDecode from "jwt-decode";
 import { useRouter } from "next/navigation";

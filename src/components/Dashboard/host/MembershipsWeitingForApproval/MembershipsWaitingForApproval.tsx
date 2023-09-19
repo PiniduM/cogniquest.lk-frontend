@@ -3,6 +3,7 @@ import { IMembershipWaitingForApproval } from "@/src/types/application";
 import axios, { AxiosError } from "axios";
 import { useCallback, useEffect, useState } from "react";
 import MembershipWaitingForApproval from "./MembershipWaitingForApproval";
+import CardListLayout from "@/src/layouts/CardListLayout";
 
 interface IProps {
   organizationMembershipsToken: string | undefined;
@@ -40,19 +41,24 @@ const MembershipsWaitingForApproval: React.FC<IProps> = ({
   }, [organizationMembershipsToken]);
 
   return (
-    <div>
-      <SubHeading>Mambers waiting for admin's approval</SubHeading>
-      <ul className="flex flex-col gap-2">
+    <CardListLayout title="Memberships Waiting for admin's Approval">
+
+      {
+        membershipsWaitingForApproval.length > 0 ? 
+        <ul className="flex flex-col gap-2">
         {membershipsWaitingForApproval.map((membership) => (
           <MembershipWaitingForApproval
           organizationId={organizationId}
-            membership={membership}
-            adminsMembershipsToken={organizationMembershipsToken as string}
-            refresher={setupMembershipsWaitingForApproval}
+          membership={membership}
+          adminsMembershipsToken={organizationMembershipsToken as string}
+          refresher={setupMembershipsWaitingForApproval}
           />
-        ))}
-      </ul>
-    </div>
+          ))}
+      </ul> :
+      <p className="font-semibold text-center">no memberships</p>
+    }
+    </CardListLayout>
+
   );
 };
 

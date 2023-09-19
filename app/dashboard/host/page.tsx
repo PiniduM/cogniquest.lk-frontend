@@ -7,15 +7,15 @@ import {
 } from "@/src/types/resBodies";
 import axios from "axios";
 import React, { useState, useEffect, useContext } from "react";
-import CompetitionLink from "@/src/components/global/CompetitionLink/CompetitionLink";
+import CompetitionCard from "@/src/components/Dashboard/host/CompetitionCard/CompetitionCard";
 import SubmitButton from "@/src/components/global/Buttons/SubmitButton";
 import Link from "next/link";
 import { HostDashBoardContext } from "@/src/contexts/HostDashboardContext";
 import { AuthContext } from "@/src/contexts/AuthContext";
 import CompetitionsWaitingForApproval from "@/src/components/Dashboard/host/CompetitionsWaitingForApproval/CompetitionsWaitingForApproval";
-import CompetitionListLayout from "@/src/layouts/CompetitionListLayout";
+import CardListLayout from "@/src/layouts/CardListLayout";
 import AssociatedCompetitions from "@/src/components/Dashboard/host/AssociatedCompetitions/AssociatedCompetitions";
-import NewCompetitionLink from "@/src/components/Dashboard/host/NewCompetitionLink/NewCompetitionLink";
+import NewCompetitionPageLink from "@/src/components/Dashboard/host/NewCompetitionLink/NewCompetitionLink";
 
 const HostDashBoard: React.FC = () => {
   const { userData: currentUserData } = useContext(AuthContext);
@@ -49,14 +49,6 @@ const HostDashBoard: React.FC = () => {
             <AssociatedCompetitions
               organizationMembershipsToken={organizationMembershipsToken}
             />
-          </div>
-          <div className="mb-4">
-            <CompetitionsWaitingForApproval
-              organizationMembershipsToken={organizationMembershipsToken}
-            />
-          </div>
-          <div className="col-start-1 max-w-xl">
-            <NewCompetitionLink />
           </div>
         </>
       )}

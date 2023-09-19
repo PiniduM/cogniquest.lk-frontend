@@ -1,5 +1,7 @@
 "use client";
+import CompetitionsWaitingForApproval from "@/src/components/Dashboard/host/CompetitionsWaitingForApproval/CompetitionsWaitingForApproval";
 import MembershipsWaitingForApproval from "@/src/components/Dashboard/host/MembershipsWeitingForApproval/MembershipsWaitingForApproval";
+import NewCompetitionPageLink from "@/src/components/Dashboard/host/NewCompetitionLink/NewCompetitionLink";
 import { HostDashBoardContext } from "@/src/contexts/HostDashboardContext";
 import { IOrganizationData } from "@/src/types/application";
 import axios, { AxiosError } from "axios";
@@ -47,7 +49,7 @@ const ManageOrganizationPage = () => {
 
   return (
     
-    <section className="py-4 px-2">
+    <section className="py-4 px-2 bg-[var(--extraLightBg)] grid gap-4">
       <div className="mb-4">
         <p className="text-lg">Organization ID : <span className="font-semibold">{organizationData?.organization_id}</span></p>
         <p className="text-lg">Organization Name : <span className="font-semibold">{organizationData?.organization_name}</span></p>
@@ -56,6 +58,8 @@ const ManageOrganizationPage = () => {
         organizationMembershipsToken={organizationMembershipsToken}
         organizationId={organizationId}
       />
+      <CompetitionsWaitingForApproval organizationMembershipsToken={organizationMembershipsToken} organizationId={organizationId}/>
+      <NewCompetitionPageLink />
     </section>
   );
 };

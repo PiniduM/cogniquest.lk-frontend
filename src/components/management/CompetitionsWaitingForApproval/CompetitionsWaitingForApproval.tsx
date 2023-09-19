@@ -1,6 +1,6 @@
-import CompetitionLink from "@/src/components/global/CompetitionLink/CompetitionLink";
-import CompetitionListLayout from "@/src/layouts/CompetitionListLayout";
-import { TCompetitionsWaitingForApprovalREsponseData } from "@/src/types/resBodies";
+import CompetitionCard from "@/src/components/Dashboard/host/CompetitionCard/CompetitionCard";
+import CardListLayout from "@/src/layouts/CardListLayout";
+import { TCompetitionsWaitingForApproval } from "@/src/types/resBodies";
 import delayedReload from "@/src/utils/global/delayedReload";
 import axios, { AxiosError } from "axios";
 import React, { useEffect, useState } from "react";
@@ -13,7 +13,7 @@ const CompetitionsWaitingForApproval: React.FC<IProps> = ({
   managementToken,
 }) => {
   const [competitions, setCompetitions] =
-    useState<TCompetitionsWaitingForApprovalREsponseData>([]);
+    useState<TCompetitionsWaitingForApproval>([]);
 
   const setupCompetitions = async () => {
     const utl = `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/management/give_competitions_waiting_for_approval`;
@@ -47,16 +47,16 @@ const CompetitionsWaitingForApproval: React.FC<IProps> = ({
   };
 
   return (
-    <CompetitionListLayout title="Competitions Waiting for Approval">
+    <CardListLayout title="Competitions Waiting for Approval">
       {competitions.map((competition) => (
-        <CompetitionLink
+        <CompetitionCard
           competitionData={competition}
           callToAction="Approve"
           onClick={() => approveCompetition(competition.competition_id)}
           key={competition.competition_title}
         />
       ))}
-    </CompetitionListLayout>
+    </CardListLayout>
   );
 };
 

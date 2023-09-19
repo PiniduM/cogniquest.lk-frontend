@@ -1,46 +1,51 @@
-import CompetitionLink from "@/src/components/global/CompetitionLink/CompetitionLink";
-import CompetitionListLayout from "@/src/layouts/CompetitionListLayout";
-import { TCompetitionsWaitingForApprovalREsponseData } from "@/src/types/resBodies";
+import CompetitionCard from "@/src/components/Dashboard/host/CompetitionCard/CompetitionCard";
+import CardListLayout from "@/src/layouts/CardListLayout";
+import { ICompetitionWaitingForApproval } from "@/src/types/application";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 interface IProps {
-  organizationMembershipsToken: string;
+  organizationMembershipsToken?: string;
+  organizationId: string;
 }
 
 const CompetitionsWaitingForApproval: React.FC<IProps> = ({
   organizationMembershipsToken,
+  organizationId,
 }) => {
-  const [competitions, setCompetitions] =
-    useState<TCompetitionsWaitingForApprovalREsponseData>([]);
+  const [competitions, setCompetitions] = useState<
+    ICompetitionWaitingForApproval[]
+  >([]);
 
   useEffect(() => {
-    const setupCompetitions = async () => {
-      const utl = `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/organization_member/admin/give_competitions_waiting_for_approval`;
-      const data = { organizationMembershipsToken };
-      try {
-        const response = await axios.post(utl, data);
-        const { competitions } = response.data;
-        setCompetitions(competitions);
-      } catch (error) {
-        alert("something went wrong");
-        console.log(error);
-      }
-    };
+    if (organizationMembershipsToken) {
+      const setupCompetitions = async () => {
+        const utl = `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/organization_member/admin/give_competitions_waiting_for_approval`;
+        const data = { organizationMembershipsToken, organizationId };
+        try {
+          const response = await axios.post(utl, data);
+          const { competitions } = response.data;
+          setCompetitions(competitions);
+        } catch (error) {
+          alert("something went wrong");
+          console.log(error);
+        }
+      };
 
-    setupCompetitions();
-  },[]);
+      setupCompetitions();
+    }
+  }, [organizationMembershipsToken]);
 
   return (
-    <CompetitionListLayout title="Competitions Waiting for Approval">
+    <CardListLayout title="Competitions Waiting for admin's Approval">
       {competitions.map((competition) => (
-        <CompetitionLink
+        <CompetitionCard
           competitionData={competition}
           callToAction="Approve"
           key={competition.competition_title}
         />
       ))}
-    </CompetitionListLayout>
+    </CardListLayout>
   );
 };
 

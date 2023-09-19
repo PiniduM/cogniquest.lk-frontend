@@ -1,7 +1,7 @@
 "use client";
-import CompetitionLink from "@/src/components/global/CompetitionLink/CompetitionLink";
+import CompetitionCard from "@/src/components/Dashboard/host/CompetitionCard/CompetitionCard";
 import { AuthContext } from "@/src/contexts/AuthContext";
-import CompetitionListLayout from "@/src/layouts/CompetitionListLayout";
+import CardListLayout from "@/src/layouts/CardListLayout";
 import { TPubliclyAvailbleCompetitions } from "@/src/types/resBodies";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
@@ -37,14 +37,14 @@ const page = () => {
   return (
     <section className="pt-6 p-2">
       <h1 className="text-3xl font-semibold">Publicly available competitions</h1>
-      <CompetitionListLayout title="">
+      <CardListLayout title="">
         {publiclyAvailabeCompetions.map((competition) => (
-          <CompetitionLink 
+          <CompetitionCard 
           competitionData={competition}
           callToAction="Details"
         onClick={() => handleClick(competition.competition_id)}/>
         ))}
-      </CompetitionListLayout>
+      </CardListLayout>
     </section>
   );
 };

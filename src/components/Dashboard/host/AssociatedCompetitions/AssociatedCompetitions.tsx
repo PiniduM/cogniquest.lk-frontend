@@ -1,5 +1,5 @@
-import CompetitionLink from "@/src/components/global/CompetitionLink/CompetitionLink";
-import CompetitionListLayout from "@/src/layouts/CompetitionListLayout";
+import CompetitionCard from "@/src/components/Dashboard/host/CompetitionCard/CompetitionCard";
+import CardListLayout from "@/src/layouts/CardListLayout";
 import {
   IAssociatedCompetition,
   TAssociatedCompetitions,
@@ -33,14 +33,15 @@ const AssociatedCompetitions = ({ organizationMembershipsToken }: IProps) => {
   }, []);
 
   return (
-    <CompetitionListLayout title={"Associated Competitions"}>
+    <CardListLayout title={"Associated Competitions"}>
       {associatedCompetitions.map((competition) => (
-        <CompetitionLink
+        <CompetitionCard
           competitionData={competition}
           key={competition.competition_title}
+          callToAction="Manage"
         />
       ))}
-    </CompetitionListLayout>
+    </CardListLayout>
   );
 };
 
