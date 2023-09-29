@@ -1,4 +1,4 @@
-export interface IAssociatedCompetition {
+export interface ICompetition {
   competition_id: string;
   competition_title: string;
   accessibility: string;
@@ -6,8 +6,17 @@ export interface IAssociatedCompetition {
   organization_name: string;
 }
 
-export type TAssociatedCompetitions = IAssociatedCompetition[];
+export type TAssociatedCompetitions = ICompetition[];
 
+export type TCompetitionsWaitingForApproval = ICompetition[];
+
+export interface IdOrganization {
+  organizationId: string;
+  organizationName: string;
+
+}
+
+export type TAssociatedOrganizations = IdOrganization[]
 
 export interface ICompetition {
   accessibility: string;

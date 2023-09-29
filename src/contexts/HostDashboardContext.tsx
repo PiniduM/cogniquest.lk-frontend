@@ -1,6 +1,6 @@
 "use client";
 
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
 import {
   PropsWithChildren,
   createContext,
@@ -12,23 +12,19 @@ import {
 import { TGiveOrganizationMemberToken } from "../types/reqBodies";
 import { AuthContext } from "./AuthContext";
 import { getCookie, setCookie } from "cookies-next";
-import {
-  IOrganizationMembershipsPayload,
-  TOrganizationMembershipsArray,
-} from "../types/application";
-import jwtDecode from "jwt-decode";
 import { useRouter } from "next/navigation";
 
 interface IContextValue {
   organizationMembershipsToken?: string;
   setOrganizationMembershipsToken: React.Dispatch<React.SetStateAction<string>>;
-  // organizationMemberships: TParsedMembershipsArray;
+  customizedAxiosInstance: AxiosInstance;
 }
 
 export const HostDashBoardContext = createContext<IContextValue>({
   setOrganizationMembershipsToken: (() => {}) as React.Dispatch<
     SetStateAction<string>
   >,
+  customizedAxiosInstance: axios.create(),
 });
 
 const HostDashboardContextProvider: React.FC<PropsWithChildren> = ({
@@ -41,21 +37,7 @@ const HostDashboardContextProvider: React.FC<PropsWithChildren> = ({
   const [organizationMembershipsToken, setOrganizationMembershipsToken] =
     useState<string>(getCookie("organization_memberships_token") || "");
 
-  //sets value initially so that if cookie is present use effects ast child will effect imediately.
-  //if cookie is absent they will effect after state change in .self's use effect.
-  //if doing conditional rendering at childrent based on management token initiallize token using a useState hook and update it in a useEffect hook
-
-  // const orgMembershipsTokenDecryped = (organizationMembershipsToken &&
-  //   jwtDecode(organizationMembershipsToken)) as
-  //   | IOrganizationMembershipsPayload
-  //   | undefined;
-
-  // const organizationMemberships = (orgMembershipsTokenDecryped &&
-  //   JSON.parse(orgMembershipsTokenDecryped.memberships)) as
-  //   | TParsedMembershipsArray
-  //   | undefined;
   useEffect(() => {
-    // const organizationMembershipsToken = getCookie("organization_memberships_token")
     if (userData?.account_type === "candidate") {
       router.push("/login");
     }
@@ -83,9 +65,23 @@ const HostDashboardContextProvider: React.FC<PropsWithChildren> = ({
       setupOrganizationToken();
     }
   }, []);
+  const giveCustomizedAxiosInstance = (
+    organizationMembershipsToken: string
+  ) => {
+    const config = {
+      baseURL: process.env.NEXT_PUBLIC_SERVER_BASE_URL,
+      headers: {
+        authorization: `Bearer ${organizationMembershipsToken}`,
+      },
+    };
+    return axios.create(config);
+  };
+  const customizedAxiosInstance =
+    giveCustomizedAxiosInstance(organizationMembershipsToken) || {};
   const contextValue = {
     organizationMembershipsToken,
     setOrganizationMembershipsToken,
+    customizedAxiosInstance,
   };
 
   return (

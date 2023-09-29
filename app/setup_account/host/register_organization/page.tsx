@@ -6,6 +6,7 @@ import {
   TOrganizationRegistrationData,
   TRegisterOrganizationReqBody,
 } from "@/src/types/reqBodies";
+import delayedReload from "@/src/utils/global/delayedReload";
 import validateOrgRegistrationData from "@/src/utils/register_organization/validateOrgRegistrationData";
 import {
   phoneNumberRegex,

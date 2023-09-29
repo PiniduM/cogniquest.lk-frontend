@@ -1,36 +1,36 @@
-import CompetitionCard from "@/src/components/Dashboard/host/CompetitionCard/CompetitionCard";
+import CompetitionCard from "@/src/components/Dashboard/global/CompetitionCard/CompetitionCard";
+import { HostDashBoardContext } from "@/src/contexts/HostDashboardContext";
 import CardListLayout from "@/src/layouts/CardListLayout";
 import {
-  IAssociatedCompetition,
+  ICompetition,
   TAssociatedCompetitions,
 } from "@/src/types/resBodies";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
-interface IProps {
-  organizationMembershipsToken: string;
-}
+const AssociatedCompetitions = () => {
+  const { customizedAxiosInstance, organizationMembershipsToken } =
+    useContext(HostDashBoardContext);
 
-const AssociatedCompetitions = ({ organizationMembershipsToken }: IProps) => {
   const [associatedCompetitions, setAssociatedCompetitions] = useState<
-    IAssociatedCompetition[]
+    ICompetition[]
   >([]);
 
   useEffect(() => {
-    const setupAssociatedOrganizations = async () => {
-      const url = `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/organization_member/give_associated_competitions`;
-      const data = { organizationMembershipsToken };
+    const setupAssociatedCompettions = async () => {
+      const url = `/organization_member/give_associated_competitions`;
+      const data = {};
 
       try {
-        const response = await axios.post(url, data);
+        const response = await customizedAxiosInstance.post(url, data);
         const associatedCompetitions = response.data as TAssociatedCompetitions;
         setAssociatedCompetitions(associatedCompetitions);
       } catch (error) {
         alert("something went wrong with associated competitions");
       }
     };
-    setupAssociatedOrganizations();
-  }, []);
+    setupAssociatedCompettions();
+  }, [organizationMembershipsToken]);
 
   return (
     <CardListLayout title={"Associated Competitions"}>

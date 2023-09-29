@@ -1,18 +1,20 @@
-import CompetitionCard from "@/src/components/Dashboard/host/CompetitionCard/CompetitionCard";
+import CompetitionCard from "@/src/components/Dashboard/global/CompetitionCard/CompetitionCard";
+import { HostDashBoardContext } from "@/src/contexts/HostDashboardContext";
 import CardListLayout from "@/src/layouts/CardListLayout";
 import { ICompetitionWaitingForApproval } from "@/src/types/application";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 interface IProps {
-  organizationMembershipsToken?: string;
   organizationId: string;
 }
 
 const CompetitionsWaitingForApproval: React.FC<IProps> = ({
-  organizationMembershipsToken,
   organizationId,
 }) => {
+  const { organizationMembershipsToken, customizedAxiosInstance } =
+    useContext(HostDashBoardContext);
+
   const [competitions, setCompetitions] = useState<
     ICompetitionWaitingForApproval[]
   >([]);
@@ -20,10 +22,10 @@ const CompetitionsWaitingForApproval: React.FC<IProps> = ({
   useEffect(() => {
     if (organizationMembershipsToken) {
       const setupCompetitions = async () => {
-        const utl = `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/organization_member/admin/give_competitions_waiting_for_approval`;
-        const data = { organizationMembershipsToken, organizationId };
+        const utl = `/organization/admin/give_competitions_waiting_for_approval`;
+        const data = { organizationId };
         try {
-          const response = await axios.post(utl, data);
+          const response = await customizedAxiosInstance.post(utl, data);
           const { competitions } = response.data;
           setCompetitions(competitions);
         } catch (error) {

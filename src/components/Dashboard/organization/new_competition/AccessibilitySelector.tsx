@@ -15,21 +15,23 @@ const AccessibilitySelector: React.FC<IProps> = ({ valueSynchronizer }) => {
     value: accessibility,
     label: accessibility,
   }));
-  
-  const [selectedAccessibility, setSelectedAccessibility] = useState<string>('');
+
+  const [selectedAccessibility, setSelectedAccessibility] =
+    useState<string>("");
   const selectionHandler = (newValue: string) => {
-    console.log(newValue)
+    console.log(newValue);
     setSelectedAccessibility(newValue);
-    valueSynchronizer({ type: selectedAccessibility });
+    valueSynchronizer({ type: newValue });
+    passcodeRef.current = "";
   };
-    const defaultAccessibilityOption = accessibilityOptions[0];
-    const remainingAccessibilityOptions = accessibilityOptions.slice(1);
+  const defaultAccessibilityOption = accessibilityOptions[0];
+  const remainingAccessibilityOptions = accessibilityOptions.slice(1);
 
   const passcodeRef = useRef<string>("");
   const updatePasscode = (newValue: string) => {
     passcodeRef.current = newValue;
     valueSynchronizer({
-      type: selectedAccessibility,
+      type: "passcode_protected",
       passcode: newValue,
     });
   };
@@ -45,7 +47,7 @@ const AccessibilitySelector: React.FC<IProps> = ({ valueSynchronizer }) => {
   };
 
   useEffect(() => {
-    valueSynchronizer({ type: selectedAccessibility });
+    valueSynchronizer({ type: defaultAccessibilityOption.value });
   }, []);
   // const linkRef = useRef<string>("");
   // const updateLink = (newValue: string) => {
@@ -65,7 +67,6 @@ const AccessibilitySelector: React.FC<IProps> = ({ valueSynchronizer }) => {
   //   );
   // };
   //let to add a custom link with some limitations
-  console.log(selectedAccessibility)
   return (
     <div>
       <SelectionInput
@@ -80,3 +81,4 @@ const AccessibilitySelector: React.FC<IProps> = ({ valueSynchronizer }) => {
 };
 
 export default AccessibilitySelector;
+

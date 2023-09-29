@@ -1,10 +1,16 @@
 "use client";
 
-import SubmitButton from "@/src/components/global/Buttons/SubmitButton";
-import axios, { AxiosError } from "axios";
+import InteractionManager from "@/src/components/Dashboard/candidate/competition/InteractionManager";
+import { CandidateDashboardContext } from "@/src/contexts/CandidateDashboardContext";
+import axios, { AxiosError, AxiosInstance } from "axios";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState, PropsWithChildren } from "react";
+import React, {
+  useEffect,
+  useState,
+  PropsWithChildren,
+  useContext,
+} from "react";
 
 interface ICompetition {
   competition_id: string;
@@ -22,23 +28,33 @@ const Detail: React.FC<PropsWithChildren> = ({ children }) => {
   );
 };
 
-const ApplyForCompetitionPage = () => {
+const CompetitionPage = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const competition_id = searchParams.get("competition_id");
-  if (!competition_id) {
+  const competitionId = searchParams.get("competition_id");
+  if (!competitionId) {
     router.push("/dashboard/candidate");
     return null;
   }
 
+  const { candidateToken, customizedAxiosInstance } = useContext(
+    CandidateDashboardContext
+  );
+
   const [competition, setCompetition] = useState<ICompetition>();
 
   useEffect(() => {
+    if (!candidateToken) {
+      return;
+    }
     const setupCompetition = async () => {
-      const url = `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/general/give_competition`;
-      const data = { competition_id };
+      const url = `candidate/give_competition`;
+      const data = { competitionId };
       try {
-        const response = await axios.post(url, data);
+        const response = await (customizedAxiosInstance as AxiosInstance).post(
+          url,
+          data
+        );
         console.log(response);
         const { competition } = response.data;
         if (competition) setCompetition(competition);
@@ -48,7 +64,7 @@ const ApplyForCompetitionPage = () => {
       }
     };
     setupCompetition();
-  }, []);
+  }, [candidateToken]);
 
   if (!competition) return null;
 
@@ -68,12 +84,9 @@ const ApplyForCompetitionPage = () => {
           <p>Asset Type: {assest_type}</p>
         </Detail>
       </div>
-
-      <button className="bg-[var(--blue)] py-2 px-4 border-none text-white font-semibold">
-        Apply
-      </button>
+      <InteractionManager competitionId={competitionId} />
     </section>
   );
 };
 
-export default ApplyForCompetitionPage;
+export default CompetitionPage;

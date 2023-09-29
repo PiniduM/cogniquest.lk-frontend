@@ -1,6 +1,6 @@
 'use client'
 
-import DashBoardTypeToggler from "@/src/components/Dashboard/DashboardToggler";
+import DashBoardTypeToggler from "@/src/components/Dashboard/global/DashboardToggler/DashboardToggler";
 import { AuthContext } from "@/src/contexts/AuthContext";
 import HostDashboardContextProvider from "@/src/contexts/HostDashboardContext";
 import Link from "next/link";

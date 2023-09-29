@@ -94,8 +94,8 @@ const page = () => {
 
   const handleApproval:MouseEventHandler<HTMLButtonElement> = isAdmin
     ? async (e) => {
-        const url = `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/organization_member/admin/approve_competition`;
-        const data = { competitionId: competition_id,organizationId:organization_id, organizationMembershipsToken };
+        const url = `/organization_member/admin/approve_competition`;
+        const data = { competitionId: competition_id,organizationId:organization_id,};
 
         try {
           await axios.post(url, data);

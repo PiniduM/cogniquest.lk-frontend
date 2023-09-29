@@ -6,8 +6,7 @@ const DashBoardTypeToggler: React.FC = () => {
 
   const pathname = usePathname();
 
-  const currentType = pathname.split('/')[1] as 'host' | 'candidate' || 'host'
-
+  const currentType = pathname.split('/')[2] as 'host' | 'candidate' || 'host'
   const [dashBoardType, setDashBoardType] = useState<"host" | "candidate">(
     currentType
   );

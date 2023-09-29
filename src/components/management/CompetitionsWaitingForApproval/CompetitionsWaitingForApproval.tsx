@@ -1,4 +1,4 @@
-import CompetitionCard from "@/src/components/Dashboard/host/CompetitionCard/CompetitionCard";
+import CompetitionCard from "@/src/components/Dashboard/global/CompetitionCard/CompetitionCard";
 import CardListLayout from "@/src/layouts/CardListLayout";
 import { TCompetitionsWaitingForApproval } from "@/src/types/resBodies";
 import delayedReload from "@/src/utils/global/delayedReload";

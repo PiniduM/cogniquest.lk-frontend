@@ -1,21 +1,11 @@
 "use client";
 
 import { TUserData } from "@/src/types/application";
-import {
-  IAssociatedCompetition,
-  TAssociatedCompetitions,
-} from "@/src/types/resBodies";
-import axios from "axios";
 import React, { useState, useEffect, useContext } from "react";
-import CompetitionCard from "@/src/components/Dashboard/host/CompetitionCard/CompetitionCard";
-import SubmitButton from "@/src/components/global/Buttons/SubmitButton";
-import Link from "next/link";
 import { HostDashBoardContext } from "@/src/contexts/HostDashboardContext";
 import { AuthContext } from "@/src/contexts/AuthContext";
-import CompetitionsWaitingForApproval from "@/src/components/Dashboard/host/CompetitionsWaitingForApproval/CompetitionsWaitingForApproval";
-import CardListLayout from "@/src/layouts/CardListLayout";
 import AssociatedCompetitions from "@/src/components/Dashboard/host/AssociatedCompetitions/AssociatedCompetitions";
-import NewCompetitionPageLink from "@/src/components/Dashboard/host/NewCompetitionLink/NewCompetitionLink";
+import AssociatedOrganizations from "@/src/components/Dashboard/host/AssociatedOrganizations/AssociatedOrganizations";
 
 const HostDashBoard: React.FC = () => {
   const { userData: currentUserData } = useContext(AuthContext);
@@ -33,7 +23,7 @@ const HostDashBoard: React.FC = () => {
   }, [membershipsToken]);
 
   return (
-    <section className=" px-4 pt-2 pb-6 bg-[var(--extraLightBg)] grid grid-cols-[auto,auto] grid-rows-[auto,auto,1fr] gap-2">
+    <section className=" px-4 pt-2 pb-6 bg-[var(--extraLightBg)] flex flex-col gap-6">
       <div className="flex py-2 col-span-2">
         <h1 className="text-2xl font-semibold">
           Welcome {userData?.username}{" "}
@@ -45,11 +35,8 @@ const HostDashBoard: React.FC = () => {
 
       {organizationMembershipsToken && (
         <>
-          <div className="row-span-3">
-            <AssociatedCompetitions
-              organizationMembershipsToken={organizationMembershipsToken}
-            />
-          </div>
+            <AssociatedOrganizations />
+            <AssociatedCompetitions />
         </>
       )}
     </section>

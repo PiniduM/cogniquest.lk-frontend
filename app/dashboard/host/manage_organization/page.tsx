@@ -1,14 +1,14 @@
 "use client";
-import CompetitionsWaitingForApproval from "@/src/components/Dashboard/host/CompetitionsWaitingForApproval/CompetitionsWaitingForApproval";
-import MembershipsWaitingForApproval from "@/src/components/Dashboard/host/MembershipsWeitingForApproval/MembershipsWaitingForApproval";
-import NewCompetitionPageLink from "@/src/components/Dashboard/host/NewCompetitionLink/NewCompetitionLink";
+import MembershipsWaitingForApproval from "@/src/components/Dashboard/organization/MembershipsWeitingForApproval/MembershipsWaitingForApproval";
+import LinkToNewCompwtitionPage from "@/src/components/Dashboard/organization/LinkToNewCompetitionPage/LinkToNewCompetitinPage";
 import { HostDashBoardContext } from "@/src/contexts/HostDashboardContext";
 import { IOrganizationData } from "@/src/types/application";
-import axios, { AxiosError } from "axios";
-import jwtDecode from "jwt-decode";
+import { AxiosError } from "axios";
+
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import React, { useContext, useEffect, useState } from "react";
+import CompetitionsWaitingForApproval from "@/src/components/Dashboard/organization/CompetitionsWaitingForApproval/CompetitionsWaitingForApproval";
 
 const ManageOrganizationPage = () => {
   const router = useRouter();
@@ -20,7 +20,8 @@ const ManageOrganizationPage = () => {
     return null;
   }
 
-  const { organizationMembershipsToken } = useContext(HostDashBoardContext);
+  const { organizationMembershipsToken, customizedAxiosInstance } =
+    useContext(HostDashBoardContext);
 
   const [organizationData, setOrganizationData] = useState<
     IOrganizationData | undefined
@@ -29,11 +30,11 @@ const ManageOrganizationPage = () => {
   useEffect(() => {
     if (organizationMembershipsToken) {
       const setupOrganizationData = async () => {
-        const url = `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/organization_member/admin/give_organization`;
-        const data = { organizationId, organizationMembershipsToken };
+        const url = `/organization/admin/give_organization`;
+        const data = { organizationId };
 
         try {
-          const response = await axios.post(url, data);
+          const response = await customizedAxiosInstance.post(url, data);
           const result = response.data;
           const { organizationData } = result;
           setOrganizationData(organizationData);
@@ -48,18 +49,26 @@ const ManageOrganizationPage = () => {
   }, [organizationMembershipsToken]);
 
   return (
-    
     <section className="py-4 px-2 bg-[var(--extraLightBg)] grid gap-4">
       <div className="mb-4">
-        <p className="text-lg">Organization ID : <span className="font-semibold">{organizationData?.organization_id}</span></p>
-        <p className="text-lg">Organization Name : <span className="font-semibold">{organizationData?.organization_name}</span></p>
+        <p className="text-lg">
+          Organization ID :{" "}
+          <span className="font-semibold">
+            {organizationData?.organization_id}
+          </span>
+        </p>
+        <p className="text-lg">
+          Organization Name :{" "}
+          <span className="font-semibold">
+            {organizationData?.organization_name}
+          </span>
+        </p>
       </div>
-      <MembershipsWaitingForApproval
-        organizationMembershipsToken={organizationMembershipsToken}
+      <MembershipsWaitingForApproval organizationId={organizationId} />
+      <CompetitionsWaitingForApproval
         organizationId={organizationId}
-      />
-      <CompetitionsWaitingForApproval organizationMembershipsToken={organizationMembershipsToken} organizationId={organizationId}/>
-      <NewCompetitionPageLink />
+      ></CompetitionsWaitingForApproval>
+      <LinkToNewCompwtitionPage organizationId={organizationId} />
     </section>
   );
 };
