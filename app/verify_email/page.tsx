@@ -2,7 +2,7 @@
 import jwtDecode from "jwt-decode";
 import {getCookie} from "cookies-next"
 import SubmitButton from "@/src/components/global/Buttons/SubmitButton";
-import { verificationCodeRegex } from "@/src/validators/validators";
+import { verificationCodeRege
 import axios, { AxiosError } from "axios";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
