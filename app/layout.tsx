@@ -2,7 +2,7 @@ import "@/src/styles/globals.css";
 import "@/src/styles/vanila.css";
 
 import type { Metadata } from "next";
-import Header from "@/src/components/global/Header/Header";
+import Header from "../src/components/global/Header/Header";
 import NavigationMenu from "@/src/components/global/NavigationMenu/NavigationMenu";
 import AuthContextProvider from "@/src/contexts/AuthContext";
 import { Inter } from "next/font/google";
