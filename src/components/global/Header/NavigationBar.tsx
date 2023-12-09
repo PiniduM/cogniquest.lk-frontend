@@ -16,7 +16,7 @@ const Navlink: React.FC<INavlinkProps> = ({ href, children }) => {
 interface Iprops {}
 const NavigationBar: React.FC<Iprops> = () => {
   return (
-    <nav className="flex text-[var(--blue)] font-semibold text-lg gap-2">
+    <nav className="flex text-primary font-semibold text-lg gap-2">
       <Navlink href="/">Home</Navlink>
       <Navlink href="/competitions">Competitions</Navlink>
       <Navlink href="/dashboard">Dashboard</Navlink>

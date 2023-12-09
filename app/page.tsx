@@ -1,17 +1,22 @@
 "use client";
 
-import heroVector from "@/public/images/hero_image.svg";
+import heroVector from "@/public/images/hero/hero_image.png";
 import robotVector from "@/public/images/robot_image.svg";
 import { AuthContext } from "@/src/contexts/AuthContext";
+// import heroCover from "@public/images/hero/hero_cover.svg";
 import Image from "next/image";
 import { useContext } from "react";
+import "./hero.css"
 
 const HomePage: React.FC = () => {
   const { loginToken } = useContext(AuthContext);
 
   return (
     <>
-      <section className=" flex justify-evenly items-center py-10 px-8 bg-[var(--lightBlue)] mb-10">
+      <section className="flex justify-evenly items-center py-10 mb-10 hero">
+        <div className="relative">
+          <Image src={heroVector} alt="teamwork" width={500} />
+        </div>
         <div>
           <h1 className="text-5xl mb-6 font-semibold">Cogniquest.lk</h1>
           <p className="text-2xl font-semibold text-gray-500">
@@ -20,12 +25,9 @@ const HomePage: React.FC = () => {
             <br /> competitions
           </p>
         </div>
-        <div>
-          <Image src={heroVector} alt="teamwork" width={500} />
-        </div>
       </section>
-      <section className="flex justify-evenly items-center py-2 px-8 mx-4 border-2 border-[var(--lightBlue)] rounded-md">
-        <div className="hover:shadow-md">
+      <section className="flex justify-evenly items-center px-8 mx-4">
+        <div className="">
           <h1 className="text-4xl mb-6 font-semibold">
             A platform to ignite
             <br />
