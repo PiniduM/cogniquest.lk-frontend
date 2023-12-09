@@ -13,9 +13,16 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      <section className="flex justify-evenly items-center py-10 mb-10 hero">
+      <section className="flex justify-evenly items-center py-10 mb-10 hero bg-gradient-to-r from-[#ff5757] dark:from-[#7045A3] dark:to-[#25132F] ">
         <div className="relative">
-          <Image src={heroVector} alt="teamwork" width={500} />
+          {/* <Image src={heroVector} alt="teamwork" width={500} /> */}
+          <Image
+            className="w-full h-full"
+            src={"/images/hero/hero_content.png"}
+            alt="hero-pic-cover"
+            width={500}
+            height={500}
+          />
         </div>
         <div>
           <h1 className="text-5xl mb-6 font-semibold">Cogniquest.lk</h1>
