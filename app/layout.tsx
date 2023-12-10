@@ -22,8 +22,10 @@ export default function RootLayout({
     <AuthContextProvider>
       <html lang="en">
         <body className={`relative ${inter.className}`}>
-          <Header />
-          <main className="max-w-screen-2xl mx-auto">{children}</main>{" "}
+          <main className="max-w-screen-2xl mx-auto">
+            <Header />
+            {children}
+          </main>
           {/*should be scaled up to fit with screens over w-1500px */}
         </body>
       </html>

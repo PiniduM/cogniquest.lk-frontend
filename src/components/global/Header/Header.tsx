@@ -21,7 +21,7 @@ const Header: React.FC = () => {
           width={32}
           className="h-auto"
         /> */}
-        <h1 className="title capitalize font-bold text-2xl  text-tertiary-light dark:text-primary">COGNIQUEST</h1>
+        <h1 className="title capitalize font-bold text-2xl  text-tertiary-light">COGNIQUEST</h1>
       </div>
       <div className="flex gap-4 items-center">
         <div className="hidden sm:flex flex-row items-center gap-4">

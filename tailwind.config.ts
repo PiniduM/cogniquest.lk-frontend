@@ -6,6 +6,7 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
@@ -28,7 +29,7 @@ const config: Config = {
           DEFAULT: "back",
           dark: "#f5f5f5",
           light: "#f5f5f5",
-        }
+        },
       },
     },
   },
