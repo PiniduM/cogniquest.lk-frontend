@@ -61,7 +61,7 @@ const LoginPage = () => {
   const { loginToken } = useContext(AuthContext);
   useEffect(() => {
     if (loginToken) router.push("/");
-  }, []);
+  }, [loginToken, router]);
 
   return (
     <div className="max-w-[90%] m-auto mt-[10vh] pb-4 grid grid-rows-[repeat(3,auto)] border-2 border-[var(--lightBlue)]">
@@ -103,7 +103,7 @@ const LoginPage = () => {
       </div>
       <div>
         <p className="text-center">
-          Don't have an account?{" "}
+          {"  Don't have an account? "}
           <Link href="/register">
             <span className="text-[var(--blue)] underline font-semibold">
               register

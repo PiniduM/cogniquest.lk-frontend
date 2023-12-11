@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ReactNode, useState } from "react";
 import { styled } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
+import ProfileMenu from "./ProfileMenu";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -80,7 +81,7 @@ const NavigationBar: React.FC<IProps> = () => {
   };
   return (
     <nav
-      className={`sm:h-full items-center overflow-hidden m-auto  flex lg:h-auto flex-col sm:flex-row dark:text-tertiary-light text-[#696969] text-lg  p-5 gap-3 sm:p-0 sm:gap-10 sm:mr-4`}
+      className={`sm:h-full items-center overflow-hidden m-auto flex lg:h-auto flex-col sm:flex-row dark:text-tertiary-light text-[#696969] text-lg  p-5 gap-3 sm:p-0 sm:gap-5 sm:mr-4`}
     >
       <Navlink href="/">Home</Navlink>
       <Navlink href="/competitions">Competitions</Navlink>
@@ -93,7 +94,7 @@ const NavigationBar: React.FC<IProps> = () => {
         value={darkMode}
       />
 
-      <Button
+      {/* <Button
         style={{
           color: "rgba(0, 0, 0, 1)",
           background:
@@ -102,7 +103,8 @@ const NavigationBar: React.FC<IProps> = () => {
         onClick={() => {}}
       >
         Login
-      </Button>
+      </Button> */}
+      <ProfileMenu/>
     </nav>
   );
 };
