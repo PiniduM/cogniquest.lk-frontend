@@ -3,11 +3,7 @@ import Button from "@/src/ui/button";
 import Link from "next/link";
 import { ReactNode, useState } from "react";
 import { styled } from "@mui/material/styles";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -89,17 +85,14 @@ const NavigationBar: React.FC<IProps> = () => {
       <Navlink href="/">Home</Navlink>
       <Navlink href="/competitions">Competitions</Navlink>
       <Navlink href="/dashboard">Dashboard</Navlink>
-      <FormControlLabel
-        label=""
-        control={
-          <MaterialUISwitch
-            sx={{ m: 1 }}
-            defaultChecked
-            onChange={toggleDarkMode}
-            value={darkMode}
-          />
-        }
+
+      <MaterialUISwitch
+        sx={{ m: 1 }}
+        defaultChecked
+        onChange={toggleDarkMode}
+        value={darkMode}
       />
+
       <Button
         style={{
           color: "rgba(0, 0, 0, 1)",

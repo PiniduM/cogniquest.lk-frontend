@@ -48,7 +48,7 @@ const Header: React.FC = () => {
         </div>
       </header>
       <div
-        className={`flex flex-row items-center gap-4 transition-height duration-300 sm:hidden absolute bg-[#0000004b] top-16 w-full z-10 overflow-hidden max-h-52 ${
+        className={`flex flex-row items-center gap-4 transition-height duration-300 sm:hidden absolute bg-[#0000004b] top-16 w-full z-10 overflow-hidden max-h-64 ${
           showNav ? "h-full" : "h-0"
         }`}
       >
