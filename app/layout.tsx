@@ -22,7 +22,7 @@ export default function RootLayout({
     <AuthContextProvider>
       <html lang="en" className="dark">
         <body className={`relative ${inter.className}`}>
-          <main className="">
+          <main className="from-[#7474FF] to-[#fff] dark:from-[#7045A3] dark:to-[#25132F] bg-gradient-to-r">
             <Header />
             {children}
           </main>
