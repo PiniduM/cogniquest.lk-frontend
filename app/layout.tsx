@@ -20,9 +20,9 @@ export default function RootLayout({
 }) {
   return (
     <AuthContextProvider>
-      <html lang="en">
+      <html lang="en" className="dark">
         <body className={`relative ${inter.className}`}>
-          <main className="max-w-screen-2xl mx-auto">
+          <main className="">
             <Header />
             {children}
           </main>

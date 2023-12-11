@@ -1,12 +1,10 @@
 "use client";
 
-import heroVector from "@/public/images/hero/hero_image.png";
-import robotVector from "@/public/images/robot_image.svg";
-import { AuthContext } from "@/src/contexts/AuthContext";
+import robotVector from "../public/images/robot_image.svg";
+import { AuthContext } from "../src/contexts/AuthContext";
 // import heroCover from "@public/images/hero/hero_cover.svg";
 import Image from "next/image";
 import { useContext } from "react";
-import "./hero.css";
 import Button from "../src/ui/button";
 
 const HomePage: React.FC = () => {
@@ -15,6 +13,9 @@ const HomePage: React.FC = () => {
   return (
     <>
       <section className="dark:text-white text-black flex justify-evenly items-center py-10 mb-10 hero bg-gradient-to-r from-[#7474FF] to-[#fff] dark:from-[#7045A3] dark:to-[#25132F] ">
+
+
+        
         <div className="relative w-2/4">
           <div className="image_container">
             <Image
