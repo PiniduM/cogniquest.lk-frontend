@@ -33,19 +33,23 @@ const PubliclyAvailbleCompetitions = () => {
       `/dashboard/candidate/competition?competition_id=${competition_id}`
     );
   };
-
+console.log(publiclyAvailabeCompetions)
   return (
     <section className="pt-6 p-2">
-      <CardListLayout title="Publicly Available Competitions">
-        {publiclyAvailabeCompetions.map((competition) => (
-          <CompetitionCard
-            key={competition.competition_id}
-            competitionData={competition}
-            callToAction="Details"
-            onClick={() => handleClick(competition.competition_id)}
-          />
-        ))}
-      </CardListLayout>
+      {publiclyAvailabeCompetions.length ? (
+        <CardListLayout title="Publicly Available Competitions">
+          {publiclyAvailabeCompetions.map((competition) => (
+            <CompetitionCard
+              key={competition.competition_id}
+              competitionData={competition}
+              callToAction="Details"
+              onClick={() => handleClick(competition.competition_id)}
+            />
+          ))}
+        </CardListLayout>
+      ) : (
+        <h2>{"You don't have any competition"}</h2>
+      )}
     </section>
   );
 };
