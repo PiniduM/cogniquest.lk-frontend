@@ -6,6 +6,10 @@ import Button from "@/src/ui/button";
 import logoImg from "@/public/images/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons"; // Changed faXmark to faTimes
+import {
+  Experimental_CssVarsProvider as CssVarsProvider,
+  useColorScheme,
+} from '@mui/material/styles';
 
 const Header: React.FC = () => {
   const [showNav, setShowNav] = useState(false);
@@ -16,7 +20,7 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <header className="flex-row w-full mx-auto absolute flex justify-between px-3 xl:px-[5rem] md:px-[2rem] sm:px-[1rem] mt-4 z-10">
+      <header className="flex-row w-full mx-auto absolute flex sm:flex-col justify-between md:justify-center lg:justify-between sm:items-center lg:flex-row sm:justify-between px-3 xl:px-[5rem] md:px-[2rem] sm:px-[1rem] mt-4 z-10">
         <div className="flex gap-4 items-center">
           <h1 className="title capitalize font-bold text-2xl text-tertiary-light">
             COGNIQUEST
@@ -48,7 +52,7 @@ const Header: React.FC = () => {
         </div>
       </header>
       <div
-        className={`flex flex-row items-center gap-4 transition-height duration-300 sm:hidden absolute bg-[#0000004b] top-16 w-full z-10 overflow-hidden max-h-64 ${
+        className={`flex flex-row items-center gap-4 transition-height duration-300 sm:hidden absolute bg-[#0000004b] top-16 w-full z-10 overflow-hidden max-h-96 ${
           showNav ? "h-full" : "h-0"
         }`}
       >

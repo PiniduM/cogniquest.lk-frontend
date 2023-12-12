@@ -64,7 +64,7 @@ const LoginPage = () => {
   }, [loginToken, router]);
 
   return (
-    <div className="max-w-[90%] m-auto mt-[10vh] pb-4 grid grid-rows-[repeat(3,auto)] border-2 border-[var(--lightBlue)]">
+    <div className="md:max-w-[100%] max-w-full sm:max-w-[95%] m-auto pt-[8rem] lg:pt-[5rem] pb-4 grid grid-rows-[repeat(3,auto)] min-h-screen">
       <div className="flex flex-col items-center bg-[var(--blue)]">
         <div className="h-[3.5rem] w-[3.5rem] rounded-full bg-white translate-y-[-12px] border-4 border-[var(--blue)]">
           <Image src={logoImage} alt="cogniquest" fill className="p-2" />
@@ -76,9 +76,10 @@ const LoginPage = () => {
       <div>
         <form
           onSubmit={(e) => handleSubmit(e)}
-          className="grid justify-items-center gap-4 pt-4 pb-6 max-w-[22rem] px-2 m-auto"
+          className="grid mt-3 justify-items-center gap-6 pt-4 pb-6 md:max-w-[22rem] sm:max-w-[25rem] px-2 m-auto"
         >
           <CustomInput
+            fullWidth
             name="email"
             label="Email"
             type="text"
@@ -88,6 +89,7 @@ const LoginPage = () => {
             validationError="Invalid email"
           />
           <CustomInput
+            fullWidth
             name="password"
             label="Password"
             type="password"

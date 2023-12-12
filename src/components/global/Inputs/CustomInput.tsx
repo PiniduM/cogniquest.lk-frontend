@@ -1,4 +1,5 @@
 "use client";
+import { TextField } from "@mui/material";
 import { useState } from "react";
 
 interface Iprops {
@@ -14,6 +15,7 @@ interface Iprops {
   customError?: React.ReactNode;
   displayCustomError?: boolean;
   valueSynchronizer?: (value: string) => void;
+  fullWidth?: boolean;
 }
 
 const CustomInput: React.FC<Iprops> = ({
@@ -24,6 +26,7 @@ const CustomInput: React.FC<Iprops> = ({
   required,
   defaultValue,
   specificStyles,
+  fullWidth,
   validator,
   validationError,
   customError,
@@ -42,20 +45,26 @@ const CustomInput: React.FC<Iprops> = ({
 
   return (
     <div className="w-full">
-      <label className="flex flex-col">
-        <span className="text-lg font-semibold mb-1">{label}</span>
-        <input
-          name={name}
-          type={type}
-          required={required}
-          value={value}
-          defaultValue={defaultValue}
-          onBlur={handleBlur}
-          className={`p-1 border-2 border-[var(--lightBlue)] ${specificStyles}`}
-        />
-      </label>
-      {!valid && <p className="text-red-700">{validationError}</p>}
-      {displayCustomError && <div className="text-red-700">{customError}</div>}
+      {/* <label className="flex flex-col"> */}
+      {/* <span className="text-lg font-semibold mb-1">{label}</span> */}
+      <TextField
+        name={name}
+        label={label}
+        fullWidth={fullWidth}
+        type={type}
+        required={required}
+        value={value}
+        defaultValue={defaultValue}
+        // onBlur={handleBlur}
+        color="primary"
+        className="dark:text-white"
+        error={!valid}
+        helperText={displayCustomError && customError}
+        // className={`p-1 border-2 border-[var(--lightBlue)] ${specificStyles}`}
+      />
+      {/* </label> */}
+      {/* {!valid && <p className="text-red-700">{validationError}</p>} */}
+      {/* {displayCustomError && <div className="text-red-700">{customError}</div>} */}
     </div>
   );
 };

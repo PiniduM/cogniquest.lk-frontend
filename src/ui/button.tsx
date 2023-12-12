@@ -9,6 +9,7 @@ type ButtonProps = {
   style?: React.CSSProperties;
   icon?: React.ReactNode;
   size?: "small" | "medium" | "large";
+  type?: "button" | "reset" | "submit";
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -20,6 +21,7 @@ const Button: React.FC<ButtonProps> = ({
   style = {},
   icon,
   size = "medium",
+  type,
 }) => {
   const getVariantClass = (): string => {
     switch (variant) {
@@ -51,6 +53,7 @@ const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       disabled={disabled}
       style={style}
+      type={type}
     >
       {children}
       {icon && <span className="ml-2">{icon}</span>}

@@ -1,5 +1,6 @@
-import { passwordRegex } from "@/src/validators/validators";
+import { TextField } from "@mui/material";
 import { useRef, useState } from "react";
+import { passwordRegex } from "@/src/validators/validators";
 
 interface IPasswordStatus {
   password?: string;
@@ -10,12 +11,14 @@ interface Iprops {
   statusSynchronizer: ({}: IPasswordStatus) => void;
   validator: RegExp;
   validationError: string;
+  fullWidth?: boolean;
 }
 
 const ConfirmedPasswordInput: React.FC<Iprops> = ({
   statusSynchronizer,
   validator,
   validationError,
+  fullWidth,
 }) => {
   const passwordRef = useRef<HTMLInputElement>(null);
   const confirmedPasswordRef = useRef<HTMLInputElement>(null);
@@ -25,65 +28,65 @@ const ConfirmedPasswordInput: React.FC<Iprops> = ({
   const validatePassword = (password: string, confirmedPassword: string) => {
     if (passwordRegex.test(password || "")) {
       setValid(true);
-      if (confirmed !== undefined) {
+      statusSynchronizer({ password });
+      if (confirmedPassword) {
         validateConfirmation(password, confirmedPassword);
       }
-    } else setValid(false);
-    statusSynchronizer({ password });
+    } else {
+      setValid(false);
+      setConfirmed(false);
+    }
   };
-
   const validateConfirmation = (
     password: string,
     confirmedPassword: string
-  ) => {
-    if (password === confirmedPassword) setConfirmed(true);
-    else setConfirmed(false);
-    statusSynchronizer({
-      confirmed: validator.test(password) && password === confirmedPassword,
-    });
+  ) => {    
+    if (password === confirmedPassword) {
+      setConfirmed(true);
+      statusSynchronizer({ confirmed: true });
+    } else {
+      setConfirmed(false);
+      statusSynchronizer({ confirmed: false });
+    }
   };
 
   return (
     <>
       <div className="w-full">
-        <label className="flex flex-col w-full">
-          <span className="text-lg font-semibold mb-1">Password</span>
-          <input
-            name="password"
-            type="password"
-            required={true}
-            ref={passwordRef}
-            onBlur={(e) =>
-              validatePassword(
-                e.target.value,
-                (confirmedPasswordRef.current as HTMLInputElement).value
-              )
-            }
-            className="p-1 border-2 border-[var(--lightBlue)]"
-          />
-        </label>
-        {!valid && <p className="text-red-700">{validationError}</p>}
+        <TextField
+          fullWidth={fullWidth}
+          label={"Password"}
+          name="password"
+          type="password"
+          required={true}
+          inputRef={passwordRef}
+          onBlur={(e) =>
+            validatePassword(
+              passwordRef.current?.value || "", // Access value directly
+              confirmedPasswordRef.current?.value || ""
+            )
+          }
+          error={!valid}
+          helperText={!valid && validationError}
+        />
       </div>
       <div className="w-full">
-        <label className="flex flex-col w-full">
-          <span className="text-lg font-semibold mb-1">Confirmed password</span>
-          <input
-            name="confirmed_password"
-            type="password"
-            required={true}
-            ref={confirmedPasswordRef}
-            onBlur={(e) =>
-              validateConfirmation(
-                (passwordRef.current as HTMLInputElement).value,
-                e.target.value
-              )
-            }
-            className="p-1 border-2 border-[var(--lightBlue)]"
-          />
-        </label>
-        {confirmed === false && (
-          <p className="text-red-700">Passwords do not match!</p>
-        )}
+        <TextField
+          fullWidth={fullWidth}
+          label={"Confirmed password"}
+          name="confirmed_password"
+          type="password"
+          required={true}
+          inputRef={confirmedPasswordRef}
+          onBlur={(e) =>
+            validateConfirmation(
+              passwordRef.current?.value || "",
+              confirmedPasswordRef.current?.value || ""
+            )
+          }
+          error={confirmed === false}
+          helperText={!confirmed && "Passwords do not match!"}
+        />
       </div>
     </>
   );

@@ -71,6 +71,7 @@ interface IProps {}
 const NavigationBar: React.FC<IProps> = () => {
   const [darkMode, setDarkMode] = useState(false);
 
+
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
     if (darkMode) {
@@ -104,7 +105,7 @@ const NavigationBar: React.FC<IProps> = () => {
       >
         Login
       </Button> */}
-      <ProfileMenu/>
+      <ProfileMenu />
     </nav>
   );
 };

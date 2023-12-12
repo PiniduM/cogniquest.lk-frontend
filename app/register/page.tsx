@@ -19,6 +19,8 @@ import axios, { AxiosError, AxiosResponse } from "axios";
 import { useRouter } from "next/navigation";
 import SubmitButton from "@/src/components/global/Buttons/SubmitButton";
 import { AuthContext } from "@/src/contexts/AuthContext";
+import { TextField } from "@mui/material";
+import Button from "@/src/ui/button";
 
 interface IPasswordStatus {
   password: string;
@@ -112,10 +114,10 @@ const RegisterPage: React.FC = () => {
   const { loginToken } = useContext(AuthContext);
   useEffect(() => {
     if (loginToken) router.push("/");
-  }, []);
+  }, [loginToken, router]);
 
   return (
-    <div className="max-w-[90%] m-auto mt-[10vh] pb-4 grid grid-rows-[repeat(3,auto)] border-2 border-[var(--lightBlue)]">
+    <div className="md:max-w-[100%] max-w-full sm:max-w-[95%] m-auto pt-[8rem] lg:pt-[5rem] pb-4 grid grid-rows-[repeat(3,auto)] min-h-screen">
       <div className="flex flex-col items-center bg-[var(--blue)]">
         <div className="h-[3.5rem] w-[3.5rem] rounded-full bg-white translate-y-[-12px] border-4 border-[var(--blue)]">
           <Image src={logoImage} alt="cogniquest" fill className="p-2" />
@@ -127,35 +129,32 @@ const RegisterPage: React.FC = () => {
       <div>
         <form
           onSubmit={(e) => handleSubmit(e)}
-          className="grid justify-items-center gap-6 pt-4 pb-6 max-w-[22rem] px-2 m-auto"
+          className="grid mt-3 justify-items-center gap-6 pt-4 pb-6 md:max-w-[22rem] sm:max-w-[25rem] px-2 m-auto"
         >
           <CustomInput
+            fullWidth
             name="email"
             label="Email"
             type="text"
             required={true}
             validator={emailRegex}
             validationError="Please enter a valid email address"
-            customError={
-              <p className="text-red-600">
-                Already regitered with this email. Login please
-              </p>
-            }
+            customError={"Already regitered with this email. Login please"}
             displayCustomError={duplicateEmail}
           />
           <CustomInput
+            fullWidth
             name="username"
             label="Username"
             required={true}
             type="text"
             validator={usernameRegex}
             validationError="please enter a Username containing 6-12 characters including only numbers and letters"
-            customError={
-              <p className="text-red-600">Username is already taken</p>
-            }
+            customError={"Username is already taken"}
             displayCustomError={duplicateUsername}
           />
           <CustomInput
+            fullWidth
             name="full_name"
             label="Full name"
             type="text"
@@ -164,6 +163,7 @@ const RegisterPage: React.FC = () => {
             validationError="Please enter a valid full name containing at least first name and second name. Eg: John Doe"
           />
           <CustomInput
+            fullWidth
             name="contact_number"
             label="Phone number"
             type="text"
@@ -171,9 +171,7 @@ const RegisterPage: React.FC = () => {
             validator={phoneNumberRegex}
             validationError="Please enter a valid phone number. Sri lankan phone number is required"
             customError={
-              <p className="text-red-600">
-                Already regitered with this phone number. Login please
-              </p>
+              "Already regitered with this phone number. Login please"
             }
             displayCustomError={duplicateContactNumber}
           />
@@ -188,6 +186,7 @@ const RegisterPage: React.FC = () => {
             valueSynchronizer={updateSelectedCountry}
           />
           <ConfirmedPasswordInput
+            fullWidth
             statusSynchronizer={updatePasswordStatus}
             validator={passwordRegex}
             validationError="Plese enter a valid password containing 6-12 characters including only numbers and letters"

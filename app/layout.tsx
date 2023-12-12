@@ -20,15 +20,15 @@ export default function RootLayout({
 }) {
   return (
     <AuthContextProvider>
-      <html lang="en" className="dark">
-        <body className={`relative ${inter.className}`}>
-          <main className="from-[#7474FF] to-[#fff] dark:from-[#7045A3] dark:to-[#25132F] bg-gradient-to-r">
-            <Header />
-            {children}
-          </main>
-          {/*should be scaled up to fit with screens over w-1500px */}
-        </body>
-      </html>
+        <html lang="en" className="dark">
+          <body className={`relative ${inter.className}`}>
+            <main className="from-[#7474FF] to-[#fff] dark:from-[#7045A3] dark:to-[#25132F] bg-gradient-to-r">
+              <Header />
+              {children}
+            </main>
+            {/*should be scaled up to fit with screens over w-1500px */}
+          </body>
+        </html>
     </AuthContextProvider>
   );
 }
