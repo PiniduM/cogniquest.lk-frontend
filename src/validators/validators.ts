@@ -42,6 +42,7 @@ export const organizationNameRegex = /^.{2,100}$/;
 export const validOrganizationTypes = ["for_profit","non_profit"];
 export const referencePrefixRegex = /^[A-Z]{4}$/;
 export const referenceCodeRegex = /^[A-Z]{4}[0-9]{4}$/;
+export const emailVerificationTokenRegex = /^[0-9]{6}$/;
 
 
 export const validCountries = [

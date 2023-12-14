@@ -1,8 +1,8 @@
 "use client";
 import jwtDecode from "jwt-decode";
-import {getCookie} from "cookies-next"
+import { getCookie } from "cookies-next";
 import SubmitButton from "@/src/components/global/Buttons/SubmitButton";
-import { verificationCodeRege
+import { emailVerificationTokenRegex } from "@/src/validators/validators";
 import axios, { AxiosError } from "axios";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -15,7 +15,7 @@ const VerifyEmailPage: React.FC = () => {
   const [email, setEmail] = useState("");
 
   const router = useRouter();
-  const emailVerificationToken = getCookie('email_verification_token');
+  const emailVerificationToken = getCookie("email_verification_token");
   useEffect(() => {
     if (!emailVerificationToken) {
       router.push("/login");
@@ -33,13 +33,13 @@ const VerifyEmailPage: React.FC = () => {
     } catch {
       router.push("/login");
     }
-  }, []);
+  }, [emailVerificationToken, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
     const verificationCode = form.verification_code.value;
-    if (!verificationCodeRegex.test(verificationCode)) {
+    if (!emailVerificationTokenRegex.test(verificationCode)) {
       setInvalidVerificationCode(true);
       return;
     }
@@ -54,9 +54,9 @@ const VerifyEmailPage: React.FC = () => {
         setInvalidVerificationCode(true);
     }
   };
-  
+
   return email ? (
-    <div className="max-w-[40rem] m-auto mt-[10vh] border-2 border-[var(--lightBlue)]">
+    <div className="md:max-w-[100%] max-w-full sm:max-w-[95%] m-auto pt-[8rem] lg:pt-[5rem] pb-4 grid grid-rows-[repeat(3,auto)] min-h-screen">
       <div className="flex flex-col items-center bg-[var(--blue)]">
         <div className="h-[3.5rem] w-[3.5rem] rounded-full bg-white translate-y-[-12px] border-4 border-[var(--blue)]">
           <Image src={logoImage} alt="cogniquest" fill className="p-2" />
@@ -69,8 +69,7 @@ const VerifyEmailPage: React.FC = () => {
         <p className="w-[30rem] m-auto text-center mb-4">
           A email including a six digit verification code has sent to
           <br />
-          your email address{" "}
-          <span className="text-[var(--blue)]">{email}</span>
+          your email address <span className="text-[var(--blue)]">{email}</span>
           .
           <br />
           <span className="font-semibold">

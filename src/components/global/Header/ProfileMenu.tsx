@@ -32,7 +32,7 @@ const LogoutBtn: React.FC = () => {
   return (
     <Button
       onClick={logout}
-      className={`border-2 border-[var(--lightRed)] rounded-md pl-2 py-[3px] font-semibold hover:bg-[var(--lightRed)] hover:text-white`}
+      // className={`border-2 border-[var(--lightRed)] rounded-md pl-2 py-[3px] font-semibold hover:bg-[var(--lightRed)] hover:text-white`}
     >
       Log out
     </Button>
