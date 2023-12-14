@@ -21,7 +21,7 @@ const SelectionInput: React.FC<Iprops> = ({
   }, [defaultOption, valueSynchronizer]);
   return (
     <div className="w-full">
-      {/* <label className="flex flex-col">
+      <label className="flex flex-col">
         <span className="text-lg font-semibold mb-1">{label}</span>
         <select
           required={required}
@@ -37,9 +37,9 @@ const SelectionInput: React.FC<Iprops> = ({
             </option>
           ))}
         </select>
-      </label> */}
+      </label>
 
-      <FormControl fullWidth>
+      {/* <FormControl fullWidth>
         <InputLabel id="select_contry-label">{label}</InputLabel>
         <Select
           required={required}
@@ -55,7 +55,7 @@ const SelectionInput: React.FC<Iprops> = ({
             </MenuItem>
           ))}
         </Select>
-      </FormControl>
+      </FormControl> */}
     </div>
   );
 };

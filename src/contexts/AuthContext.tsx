@@ -33,18 +33,24 @@ export const AuthContext: Context<IcontextValues> = createContext({
 const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const router = useRouter();
 
-  const token = getCookie("login_token");
-  const userData = (token ? jwtDecode(token) : undefined) as
+  let token = undefined;
+  let userData = undefined as
     | TUserData
     | undefined;
-  const [loginToken, setLoginToken] = useState(userData ? token : undefined);
-  //To prevent setting a malformed token as the login token
+  const [loginToken, setLoginToken] = useState( undefined);
 
   useEffect(() => {
-    if (userData && userData?.account_type === null) {
-      router.push("/setup_account");
+    token = getCookie("login_token");
+    userData = (token ? jwtDecode(token) : undefined);
+    if(userData) {
+    //To prevent setting a malformed token as the login token    
+      setLoginToken(token);
+      alert(userData.account_type);
+      if (userData?.account_type === null) {
+        router.push("/setup_account");
+      }
     }
-  }, [loginToken]);
+  }, []);
 
   const giveCustomizedAxiosInstance = (loginToken: string) => {
     const config = {

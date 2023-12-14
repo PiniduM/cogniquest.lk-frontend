@@ -2,6 +2,7 @@
 export const emailRegex =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
+  export const verificationCodeRegex = /^[0-9]{6,6}$/;
 export const gmailRegex = /^[a-zA-Z0-9.+_-]+@gmail\.com$/;
 export const usernameRegex = /^[a-zA-Z0-9]{6,12}$/;
 export const passwordRegex = /^[a-zA-Z0-9]{6,12}$/;
