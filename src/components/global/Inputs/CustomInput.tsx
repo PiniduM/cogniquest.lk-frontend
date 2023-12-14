@@ -59,7 +59,7 @@ const CustomInput: React.FC<Iprops> = ({
         color="primary"
         className="dark:text-white"
         error={!valid}
-        helperText={displayCustomError && customError}
+        helperText={displayCustomError && customError || !valid && validationError}
         // className={`p-1 border-2 border-[var(--lightBlue)] ${specificStyles}`}
       />
       {/* </label> */}
