@@ -24,7 +24,7 @@ const layout: React.FC<PropsWithChildren> = ({ children }) => {
     console.log(loginToken);
     if (!loginToken) router.push("/login");
     setAccountType(userData?.account_type);
-  }, []);
+  }, [loginToken]);
 
   return (
       <>

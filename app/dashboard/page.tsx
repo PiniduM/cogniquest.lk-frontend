@@ -8,12 +8,13 @@ const DashboaderPage = () => {
   const router = useRouter();
 
   const { userData } = useContext(AuthContext);
-
+console.log(userData)
   useEffect(() => {
+    if (!userData) return
     if (userData?.account_type === "candidate")
       router.replace("/dashboard/candidate");
     else router.replace("/dashboard/host");
-  }, []);
+  }, [userData]);
 
   return null;
   //add content for seo

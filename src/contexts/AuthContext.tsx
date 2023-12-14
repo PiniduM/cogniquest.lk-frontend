@@ -34,19 +34,20 @@ const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const router = useRouter();
 
   let token = undefined;
-  let userData = undefined as
-    | TUserData
-    | undefined;
-  const [loginToken, setLoginToken] = useState( undefined);
+  // let userData = undefined as TUserData | undefined;
+  const [loginToken, setLoginToken] = useState(undefined);
+  const [userData, setUserData] = useState(undefined);
 
   useEffect(() => {
     token = getCookie("login_token");
-    userData = (token ? jwtDecode(token) : undefined);
-    if(userData) {
-    //To prevent setting a malformed token as the login token    
+    const userDataTmp = token ? jwtDecode(token) : undefined;
+    console.log(userDataTmp);
+    setUserData(userDataTmp);
+    if (userDataTmp) {
+      //To prevent setting a malformed token as the login token
       setLoginToken(token);
-      alert(userData.account_type);
-      if (userData?.account_type === null) {
+      alert(userDataTmp.account_type);
+      if (userDataTmp?.account_type === null) {
         router.push("/setup_account");
       }
     }
