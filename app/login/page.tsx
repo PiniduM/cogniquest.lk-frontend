@@ -61,7 +61,7 @@ const LoginPage = () => {
   const { loginToken } = useContext(AuthContext);
   useEffect(() => {
     if (loginToken) router.push("/");
-  }, [loginToken, router]);
+  }, []);
 
   return (
     <div className="md:max-w-[100%] max-w-full sm:max-w-[95%] m-auto pt-[8rem] lg:pt-[5rem] pb-4 grid grid-rows-[repeat(3,auto)] min-h-screen">

@@ -12,7 +12,7 @@ const AccountSetupLayout: React.FC<PropsWithChildren> = ({ children }) => {
 
   useEffect(() => {
     if (!loginToken) router.push("/login");
-  }, [loginToken, router]);
+  }, []);
   return <FormLayout title="Welcome to Cogniquest.lk">{children}</FormLayout>;
 };
 
