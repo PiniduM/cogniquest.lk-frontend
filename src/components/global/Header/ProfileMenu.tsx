@@ -31,6 +31,12 @@ const ProfileMenuLink: React.FC<IProfileMenuLinkProps> = ({
 const LogoutBtn: React.FC = () => {
   return (
     <Button
+      style={{
+        borderRadius: 45,
+        background:
+          "linear-gradient(45deg ,rgba(238, 235, 111, 1), rgba(254, 217, 5, 1), rgba(254, 196, 5, 1))",
+        maxWidth: 500,
+      }}
       onClick={logout}
       // className={`border-2 border-[var(--lightRed)] rounded-md pl-2 py-[3px] font-semibold hover:bg-[var(--lightRed)] hover:text-white`}
     >
@@ -54,7 +60,15 @@ const ProfileMenu = () => {
         </>
       ) : (
         <>
-          <Button onClick={() => {}}>
+          <Button
+            style={{
+              borderRadius: 45,
+              background:
+                "linear-gradient(45deg ,rgba(238, 235, 111, 1), rgba(254, 217, 5, 1), rgba(254, 196, 5, 1))",
+              maxWidth: 500,
+            }}
+            onClick={() => {}}
+          >
             <ProfileMenuLink
               href="/login"
               deactivator={() => setDisplayMenu(false)}
@@ -62,7 +76,15 @@ const ProfileMenu = () => {
               Login
             </ProfileMenuLink>
           </Button>
-          <Button onClick={() => {}}>
+          <Button
+            style={{
+              borderRadius: 45,
+              background:
+                "linear-gradient(45deg ,rgba(238, 235, 111, 1), rgba(254, 217, 5, 1), rgba(254, 196, 5, 1))",
+              maxWidth: 500,
+            }}
+            onClick={() => {}}
+          >
             <ProfileMenuLink
               href="/register"
               deactivator={() => setDisplayMenu(false)}

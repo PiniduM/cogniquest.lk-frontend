@@ -10,6 +10,7 @@ type ButtonProps = {
   icon?: React.ReactNode;
   size?: "small" | "medium" | "large";
   type?: "button" | "reset" | "submit";
+  special?: boolean;
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -22,6 +23,7 @@ const Button: React.FC<ButtonProps> = ({
   icon,
   size = "medium",
   type,
+  special,
 }) => {
   const getVariantClass = (): string => {
     switch (variant) {

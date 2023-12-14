@@ -40,10 +40,10 @@ const HomePage: React.FC = () => {
             className="text-gray-800 dark:text-white border-2 border-x-cyan-50"
             style={{
               background:
-                "linear-gradient(rgba(238, 235, 111, 1), rgba(254, 217, 5, 1), rgba(254, 196, 5, 1))",
+                "linear-gradient(45deg ,rgba(238, 235, 111, 1), rgba(254, 217, 5, 1), rgba(254, 196, 5, 1))",
               borderRadius: 45,
             }}
-            icon={<FontAwesomeIcon icon={faChevronRight} />}
+            icon={<FontAwesomeIcon size="1x" icon={faChevronRight} />}
           >
             Read More
           </Button>
@@ -77,11 +77,11 @@ const HomePage: React.FC = () => {
           <Button
             onClick={() => {}}
             className="text-gray-800 dark:text-white"
-            icon={<FontAwesomeIcon icon={faChevronRight} />}
+            icon={<FontAwesomeIcon size="1x" icon={faChevronRight} />}
             style={{
               borderRadius: 45,
               background:
-                "linear-gradient(rgba(238, 235, 111, 1), rgba(254, 217, 5, 1), rgba(254, 196, 5, 1))",
+                "linear-gradient(45deg ,rgba(238, 235, 111, 1), rgba(254, 217, 5, 1), rgba(254, 196, 5, 1))",
               maxWidth: 500,
             }}
           >
