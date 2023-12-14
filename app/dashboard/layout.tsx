@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import DashBoardTypeToggler from "@/src/components/Dashboard/global/DashboardToggler/DashboardToggler";
 import { AuthContext } from "@/src/contexts/AuthContext";
@@ -18,7 +18,7 @@ const layout: React.FC<PropsWithChildren> = ({ children }) => {
 
   const { loginToken, userData } = useContext(AuthContext);
 
-  const [accountType,setAccountType] = useState<string | undefined>();
+  const [accountType, setAccountType] = useState<string | undefined>();
 
   useEffect(() => {
     console.log(loginToken);
@@ -27,13 +27,17 @@ const layout: React.FC<PropsWithChildren> = ({ children }) => {
   }, [loginToken]);
 
   return (
-      <>
-        <section className="md:max-w-[100%] max-w-full sm:max-w-[95%] m-auto pt-[8rem] lg:pt-[5rem] pb-4 grid grid-rows-[repeat(3,auto)] min-h-screen">
-          <Link href='/dashboard'><h1 className="text-2xl font-semibold">Dashboard</h1></Link>
-          {(accountType === "host" || accountType === 'hostNcandidate') && <DashBoardTypeToggler />}
-        </section>
+    <>
+      <section className="md:max-w-[100%] max-w-full sm:max-w-[95%] m-auto pt-[8rem] lg:pt-[5rem] pb-4 grid grid-rows-[repeat(3,auto)] min-h-screen">
+        <Link href="/dashboard">
+          <h1 className="text-2xl font-semibold">Dashboard</h1>
+        </Link>
+        {(accountType === "host" || accountType === "hostNcandidate") && (
+          <DashBoardTypeToggler />
+        )}
         {children}
-      </>
+      </section>
+    </>
   );
 };
 
