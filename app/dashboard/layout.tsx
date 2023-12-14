@@ -28,7 +28,7 @@ const layout: React.FC<PropsWithChildren> = ({ children }) => {
 
   return (
       <>
-        <section className="flex justify-between py-2 px-4 bg-[var(--lightBlue)]">
+        <section className="md:max-w-[100%] max-w-full sm:max-w-[95%] m-auto pt-[8rem] lg:pt-[5rem] pb-4 grid grid-rows-[repeat(3,auto)] min-h-screen">
           <Link href='/dashboard'><h1 className="text-2xl font-semibold">Dashboard</h1></Link>
           {(accountType === "host" || accountType === 'hostNcandidate') && <DashBoardTypeToggler />}
         </section>

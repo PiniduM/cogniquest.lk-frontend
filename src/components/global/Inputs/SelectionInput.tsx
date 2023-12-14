@@ -45,7 +45,7 @@ const SelectionInput: React.FC<Iprops> = ({
           required={required}
           labelId="select_contry-label"
           id="select_contry"
-          value={defaultOption.value}
+          value={defaultOption ? defaultOption.value : ""}
           label={label}
           onChange={(e) => valueSynchronizer(e.target.value)}
         >
