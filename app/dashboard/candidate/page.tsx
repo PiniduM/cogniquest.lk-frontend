@@ -4,7 +4,7 @@ import React from "react";
 const CandidateDashboardPage = () => {
   return (
     <main>
-      <section></section>
+      {/* <section></section> */}
       <PubliclyAvailbleCompetitions />
     </main>
   );

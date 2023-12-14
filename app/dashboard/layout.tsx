@@ -24,20 +24,20 @@ const layout: React.FC<PropsWithChildren> = ({ children }) => {
     console.log(loginToken);
     if (!loginToken) router.push("/login");
     setAccountType(userData?.account_type);
-  }, [loginToken]);
+  }, []);
 
   return (
-    <>
-      <section className="md:max-w-[100%] max-w-full sm:max-w-[95%] m-auto pt-[8rem] lg:pt-[5rem] pb-4 grid grid-rows-[repeat(3,auto)] min-h-screen">
-        <Link href="/dashboard">
-          <h1 className="text-2xl font-semibold">Dashboard</h1>
-        </Link>
+    <div className="relative pt-[8rem] lg:pt-[5rem]">
+      <Link href="/dashboard">
+        <h1 className="text-2xl font-semibold">Dashboard</h1>
+      </Link>
+      <section className="md:max-w-[100%] max-w-full sm:max-w-[95%] m-auto  pb-4 grid grid-rows-[repeat(3,auto)] min-h-screen">
         {(accountType === "host" || accountType === "hostNcandidate") && (
           <DashBoardTypeToggler />
         )}
         {children}
       </section>
-    </>
+    </div>
   );
 };
 

@@ -24,6 +24,7 @@ const ApplicationSection: React.FC<IProps> = ({ competitionId,participationStatu
         "successefully applied You will be abale to submit your project when hosts approve your application"
       );
     } catch (err) {
+      console.log(err)
       const error = err as AxiosError;
       alert(error.response?.data || "something wend wrong");
     }
