@@ -7,7 +7,7 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": false,
+    "strict": false, // Disabling strict mode
     "noEmit": true,
     "incremental": true,
     "esModuleInterop": true,

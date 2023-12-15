@@ -1,5 +1,4 @@
-"use client";
-
+"use client"
 import DashBoardTypeToggler from "@/src/components/Dashboard/global/DashboardToggler/DashboardToggler";
 import { AuthContext } from "@/src/contexts/AuthContext";
 import HostDashboardContextProvider from "@/src/contexts/HostDashboardContext";
@@ -10,21 +9,22 @@ import React, {
   useContext,
   useEffect,
   useState,
-  useRef,
 } from "react";
 
 const layout: React.FC<PropsWithChildren> = ({ children }) => {
   const router = useRouter();
-
-  const { loginToken, userData } = useContext(AuthContext);
-
-  const [accountType, setAccountType] = useState<string | undefined>();
+  const { loginToken, userData } = useContext<any>(AuthContext);
+  const [accountType, setAccountType] = useState<any>();
 
   useEffect(() => {
     console.log(loginToken);
     if (!loginToken) router.push("/login");
-    setAccountType(userData?.account_type);
-  }, []);
+
+    // Ensure userData is defined before accessing its properties
+    if (userData) {
+      setAccountType(userData.account_type);
+    }
+  }, [loginToken, userData, router]);
 
   return (
     <div className="relative pt-[8rem] lg:pt-[5rem]">
