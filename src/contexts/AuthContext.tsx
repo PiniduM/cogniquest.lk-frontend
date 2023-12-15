@@ -17,7 +17,7 @@ import { TUserData } from "../types/application";
 import { useRouter } from "next/navigation";
 import axios, { AxiosInstance } from "axios";
 
-export interface IcontextValues {
+interface IcontextValues {
   setLoginToken: React.Dispatch<SetStateAction<string | undefined>>;
   loginToken?: string;
   userData?: TUserData;
@@ -46,13 +46,8 @@ const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
     if (userDataTmp) {
       //To prevent setting a malformed token as the login token
       setLoginToken(token);
-      // alert(userDataTmp.account_type);
-      if (
-        userDataTmp &&
-        typeof userDataTmp === "object" &&
-        "account_type" in userDataTmp &&
-        userDataTmp.account_type === null
-      ) {
+      alert(userDataTmp.account_type);
+      if (userDataTmp?.account_type === null) {
         router.push("/setup_account");
       }
     }

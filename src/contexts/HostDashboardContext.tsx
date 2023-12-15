@@ -76,10 +76,8 @@ const HostDashboardContextProvider: React.FC<PropsWithChildren> = ({
     };
     return axios.create(config);
   };
-  const customizedAxiosInstance = organizationMembershipsToken
-    ? giveCustomizedAxiosInstance(organizationMembershipsToken)
-    : undefined; // Set as undefined initially
-
+  const customizedAxiosInstance =
+    giveCustomizedAxiosInstance(organizationMembershipsToken) || {};
   const contextValue = {
     organizationMembershipsToken,
     setOrganizationMembershipsToken,
